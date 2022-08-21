@@ -20,7 +20,6 @@ import { fileCommands } from "../commands";
 import { Theme } from "../utils/theme.class";
 
 import { useStopwatch } from "react-timer-hook";
-import { Config } from "../utils/config.class";
 
 type InputContextType = {
   inputEnabled: boolean;
@@ -33,7 +32,7 @@ export const InputManager = ({ isInputOpen }: {isInputOpen: boolean}) => {
   const respondContext: AnyContextType = useRespondContext();
   const infoBoxContext: AnyContextType = useInfoBoxContext();
 
-  const { mainColor, setMainColor } = mainColorContext;
+  const { mainColor } = mainColorContext;
   const { setRespondState } = respondContext;
   const { setInfoBox } = infoBoxContext;
   
@@ -73,53 +72,36 @@ export const InputManager = ({ isInputOpen }: {isInputOpen: boolean}) => {
     [inputState]
   );
 
-  const { foreground, background } = mainColor;
-
-  const updateColors = (bg: string, fg: string) => {
-    let config = new Config();
-
-    config.setConfig('colors', JSON.stringify({background: bg, foreground: fg}))
-    
-    let colors;
-    
-    const getColorsItem = config.getConfig('colors');
-    
-    if (getColorsItem) {
-      colors = JSON.parse(getColorsItem);
-      setMainColor(colors);
-    }
-    
-    document.body.style.backgroundColor = bg;
-    document.body.style.color = fg;
-  };
+  const { foreground } = mainColor;
   
   const changeThemeCommand = (arg: string) => {
     let commandRespond = "";
     
     let theme = new Theme(mainColorContext);
     theme.themeName = arg;
-    
-    //commandRespond = "INVALID ARGUMENT";
+
     return commandRespond;
   };
-  
+
   const changeColorCommand = (arg: string) => {
     let commandRespond = "";
     let args = arg.split(' ');
     let type: string = args[0];
-    let code: string = args[1];
+    let fgColorCode: string = args[1];
+    let bgColorCode: string = args[2];
     
-    if (code[0] !== "#") {
+    /*if (fgColorCode[0] !== "#") {
       commandRespond = "Color code must start with # character";
-    } else {
-      if (type === "bg" || type.includes('back')) {
-        setMainColor({ background: code, foreground: "white"});
-        updateColors(code, "white");
-      } else if (type === "fg" || type.includes('fore')) {
-        setMainColor({ background: 'black', foreground: code });
-        updateColors("black", code);
+    } else {*/
+      let theme = new Theme(mainColorContext);
+      if (type === "bg" || type.startsWith('back')) {
+        theme.updateColors(bgColorCode, "white");
+      } else if (type === "fg" || type.startsWith('fore')) {
+        theme.updateColors("black", fgColorCode);
+      } else if (type === "both") {
+        theme.updateColors(bgColorCode, fgColorCode);
       }
-    }
+    //}
     return commandRespond;
   }
 
