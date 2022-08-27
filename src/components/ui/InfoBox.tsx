@@ -3,7 +3,6 @@ import { useState, useContext, CSSProperties, FC } from "react";
 import { infoBoxStyle } from "../../styles";
 
 import { ThemeContext } from "../../contexts/ThemeContext";
-import { useRespondContext } from "../../contexts/RespondContext";
 import { InfoBoxContext } from "../../contexts/InfoBoxContext";
 
 import Typewriter from 'typewriter-effect'

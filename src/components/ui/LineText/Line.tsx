@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { mainStyle } from "../../styles";
+import { mainStyle } from "../../../styles";
 
 interface Props {
   textWord: string;

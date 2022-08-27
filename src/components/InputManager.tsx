@@ -5,9 +5,9 @@ import { useEffect, useMemo, useState, FC } from "react";
 
 import { InputContext } from "../contexts/InputContext";
 import {
-  RespondProvider,
-  useRespondContext,
-} from "../contexts/RespondContext";
+  ResponseProvider,
+  useResponseContext,
+} from "../contexts/ResponseContext";
 import { useThemeContext } from "../contexts/ThemeContext";
 import { useInfoBoxContext } from "../contexts/InfoBoxContext";
 import { CommandContext } from "../contexts/CommandContext";
@@ -29,11 +29,11 @@ type InputContextType = {
 //export const Input = (): FC<{isInputOpen: boolean}> => {
 export const InputManager = ({ isInputOpen }: {isInputOpen: boolean}) => {
   const mainColorContext: AnyContextType = useThemeContext();
-  const respondContext: AnyContextType = useRespondContext();
+  const responseContext: AnyContextType = useResponseContext();
   const infoBoxContext: AnyContextType = useInfoBoxContext();
 
   const { mainColor } = mainColorContext;
-  const { setRespondState } = respondContext;
+  const { setResponseState } = responseContext;
   const { setInfoBox } = infoBoxContext;
   
   // Create state variables for inputEnabled and inputValue
@@ -75,23 +75,23 @@ export const InputManager = ({ isInputOpen }: {isInputOpen: boolean}) => {
   const { foreground } = mainColor;
   
   const changeThemeCommand = (arg: string) => {
-    let commandRespond = "";
+    let commandResponse = "";
     
     let theme = new Theme(mainColorContext);
     theme.themeName = arg;
 
-    return commandRespond;
+    return commandResponse;
   };
 
   const changeColorCommand = (arg: string) => {
-    let commandRespond = "";
+    let commandResponse = "";
     let args = arg.split(' ');
     let type: string = args[0];
     let fgColorCode: string = args[1];
     let bgColorCode: string = args[2];
     
     /*if (fgColorCode[0] !== "#") {
-      commandRespond = "Color code must start with # character";
+      commandResponse = "Color code must start with # character";
     } else {*/
       let theme = new Theme(mainColorContext);
       if (type === "bg" || type.startsWith('back')) {
@@ -102,7 +102,7 @@ export const InputManager = ({ isInputOpen }: {isInputOpen: boolean}) => {
         theme.updateColors(bgColorCode, fgColorCode);
       }
     //}
-    return commandRespond;
+    return commandResponse;
   }
 
   const showCommandList = () => {
@@ -132,7 +132,7 @@ export const InputManager = ({ isInputOpen }: {isInputOpen: boolean}) => {
   };
 
   const runTimerCommand = (arg: string) => {
-    var commandRespond = "";
+    var commandResponse = "";
     switch (arg) {
       case 'start':
         start();
@@ -146,15 +146,15 @@ export const InputManager = ({ isInputOpen }: {isInputOpen: boolean}) => {
         // Change infoBoxText value to empty string to make infoBox disappear from screen
         setInfoBox({ infoBoxText: "" });
         break;
-        default: commandRespond = " INVALID ARGUMENT.";
+        default: commandResponse = " INVALID ARGUMENT.";
     }
-    return commandRespond;
+    return commandResponse;
   }
 
   const setCustomInfoBox = (arg: string) => {
-    let commandRespond = "";
+    let commandResponse = "";
 
-    if (!arg.length) commandRespond = "TEXT NOT GIVEN";
+    if (!arg.length) commandResponse = "TEXT NOT GIVEN";
     
     if (arg.includes('timer')) {
       setTimeout(() => {
@@ -164,7 +164,7 @@ export const InputManager = ({ isInputOpen }: {isInputOpen: boolean}) => {
     arg = arg.replace('timer', '');
     setInfoBox({infoBoxText: arg});
 
-    return commandRespond;
+    return commandResponse;
   }
 
   const runCommand = (cmdString: string) => {
@@ -172,7 +172,7 @@ export const InputManager = ({ isInputOpen }: {isInputOpen: boolean}) => {
     let commandName: any = splitCmdString.shift();
     let args = splitCmdString.join(" ");
 
-    let respondText = "";
+    let responseText = "";
 
     if (commandName.startsWith("/")) {
       commandName = commandName.slice(1);
@@ -182,32 +182,32 @@ export const InputManager = ({ isInputOpen }: {isInputOpen: boolean}) => {
       );
 
       if (commands) {
-        respondText = commands.run(args);
-        setRespondState({ respondText: " " + respondText.toLocaleUpperCase() });
+        responseText = commands.run(args);
+        setResponseState({ responseText: " " + responseText.toLocaleUpperCase() });
         return;
       }
 
       switch (commandName) {
         case "theme":
-          respondText = changeThemeCommand(args);
+          responseText = changeThemeCommand(args);
           break;
         case "color":
-          respondText = changeColorCommand(args);
+          responseText = changeColorCommand(args);
           break;
         case "cmds":
           showCommandList();
           break;
         case "timer":
-          respondText = runTimerCommand(args);
+          responseText = runTimerCommand(args);
           break;
         case 'info':
-          respondText = setCustomInfoBox(args);
+          responseText = setCustomInfoBox(args);
           break;
         default:
-          respondText = "COMMAND NOT FOUND.";
+          responseText = "COMMAND NOT FOUND.";
       }
 
-      setRespondState({ respondText: " " + respondText.toUpperCase() });
+      setResponseState({ responseText: " " + responseText.toUpperCase() });
     }
   };
 
@@ -216,7 +216,7 @@ export const InputManager = ({ isInputOpen }: {isInputOpen: boolean}) => {
   return (
     <InputContext.Provider value={inputContext}>
       <CommandContext.Provider value={commandContextValue}>
-      <RespondProvider>
+      <ResponseProvider>
         <div style={appStyle.body}>
           <div style={{
             position:"absolute",
@@ -235,7 +235,7 @@ export const InputManager = ({ isInputOpen }: {isInputOpen: boolean}) => {
           <TerminalInput />
           )}
         </div>
-      </RespondProvider>
+      </ResponseProvider>
       </CommandContext.Provider>
     </InputContext.Provider>
   );

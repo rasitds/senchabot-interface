@@ -4,13 +4,12 @@ import './App.css';
 
 import { appStyle, buttonStyle } from './styles';
 
-
 import { ThemeContext } from './contexts/ThemeContext';
 import { RunContext } from './contexts/RunContext';
-import { RespondProvider/*, useRespondContext*/ } from './contexts/RespondContext';
+import { ResponseProvider/*, useResponseContext*/ } from './contexts/ResponseContext';
 
 import BootLine from './components/ui/BootLine';
-import Main from './components/Main';
+import LineText from './components/ui/LineText';
 import { InputManager } from './components/InputManager';
 import { InfoBox } from './components/ui/InfoBox';
 import { InfoBoxContext } from './contexts/InfoBoxContext';
@@ -30,7 +29,6 @@ function App() {
   const localStorageColors = localStorage.getItem('colors') && (JSON.parse(localStorage.getItem('colors') || "")) || { background: 'black', foreground: '#f2f2f2' };
   
   const [isLoading, setIsLoading] = useState(true);
-  const [introMode, setIntroMode] = useState(true);
   const [isRunning, setIsRunning] = useState<boolean>(true);
   // Create state variables for background and foreground
   const [mainColor, setMainColor] = useState<IMainColor>(localStorageColors);
@@ -48,33 +46,15 @@ function App() {
   const infoBoxContext = useMemo(() => ({infoBox, setInfoBox}), [infoBox]);
 
   const updateColors = (data: IMainColor) => {
-    let colors;
-
-    //const getColorsItem = localStorage.getItem('colors');
-
-    /*if (getColorsItem) {
-      colors = JSON.parse(getColorsItem);
-      document.body.style.backgroundColor = colors.background;
-      document.body.style.color = colors.foreground;
-    } else {*/
-      document.body.style.backgroundColor = data.background;
-      document.body.style.color = data.foreground;
-    //}
-  }
-
-  if (introMode) {
-    setTimeout(() => {
-      setIntroMode(false);
-    }, 5000);
+    document.body.style.backgroundColor = data.background;
+    document.body.style.color = data.foreground;
   }
 
   useEffect(() => {
     updateColors(mainColor);
-    //setRespondState({ respondText: "WHAT ARE YOUR COMMANDS?" });
     
     setTimeout(() => {
       setIsLoading(false);
-      setIntroMode(true);
     }, 1500);
   }, [mainColor]);
 
@@ -99,7 +79,7 @@ function App() {
     ) : (
     <ThemeContext.Provider value={themeContext}>
       <RunContext.Provider value={runContext}>
-        <RespondProvider>
+        <ResponseProvider>
           <InfoBoxContext.Provider value={infoBoxContext}>
             {doubleClick && (
             <div style={buttonStyle.container}>
@@ -118,11 +98,11 @@ function App() {
             </div>)}
             <div style={appStyle.body} onKeyDown={handleKeyDown} onDoubleClick={handleDoubleClick} tabIndex={-1}>
               <InfoBox />
-              <Main />
+              <LineText />
             </div>
             <InputManager isInputOpen={isInputOpen} />
           </InfoBoxContext.Provider>
-        </RespondProvider>
+        </ResponseProvider>
       </RunContext.Provider>
     </ThemeContext.Provider>
     ) }

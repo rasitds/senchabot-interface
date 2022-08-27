@@ -25,7 +25,7 @@ const buttonStyle: { [key: string]: CSSProperties } = {
     display: "flex",
   },
   buttonBox: {
-    fontFamily: "Times New Roman, Times, serif",
+    fontFamily: "Source Code Pro",
     fontSize: "16px",
     padding: "2px 4px",
     marginLeft: "8px",
@@ -50,7 +50,7 @@ const infoBoxStyle: { [key: string]: CSSProperties } = {
   },
   timerTextStyle: {
     fontSize: "18px",
-    fontFamily: "ald",
+    fontFamily: "Source Code Pro",
     fontWeight: "bold",
     textTransform: "uppercase",
     textAlign: "center",

@@ -1,21 +1,18 @@
 import { useContext, useEffect, useState } from "react";
 
-import { RunContext } from "../contexts/RunContext";
-import { useRespondContext } from "../contexts/RespondContext";
+import { RunContext } from "../../../contexts/RunContext";
+import { useResponseContext } from "../../../contexts/ResponseContext";
 
-import { getTextWidth } from "../utils/functions";
-import { useRecursiveTimeout } from "../utils/hooks";
+import { getTextWidth } from "../../../utils/functions";
+import { useRecursiveTimeout } from "../../../utils/hooks";
 
-import Line from './ui/Line';
-import Text from './ui/Text';
+import Line from './Line';
+import Text from './Text';
+import { AnyContextType } from "../../../types";
 
-type RespondContextType = {
-    [key: string]: any;
-}
-
-const Main = () => {
+const LineText = () => {
     const { isRunning, setIsRunning } = useContext(RunContext);
-    const respondContext: RespondContextType = useRespondContext();
+    const responseContext: AnyContextType = useResponseContext();
     
     const [words, setWordArray] = useState<string[]>([]);
     const [word, setWord] = useState('');
@@ -26,7 +23,7 @@ const Main = () => {
     useEffect(() => {
         if (isRunning) {
             setIsRunning(false);
-            setWordArray(respondContext.respondState.respondText.split(" "));
+            setWordArray(responseContext.responseState.responseText.split(" "));
             setWordIndex(0);
         }
     }, [isRunning])
@@ -60,4 +57,4 @@ const Main = () => {
     )
 }
 
-export default Main;
+export default LineText;
