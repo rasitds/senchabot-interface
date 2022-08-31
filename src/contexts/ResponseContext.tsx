@@ -9,11 +9,13 @@ const randomTxt: string = sentences[randomNum];
 }*/
 
 interface IResponseContext {
-    responseText: string;
+    lineText: string;
+    outputText: string[];
 }
 
 const defaultValue = {
-    responseText: randomTxt,
+    lineText: randomTxt,
+    outputText: ["/"],
 }
 
 const ResponseContext = createContext({});

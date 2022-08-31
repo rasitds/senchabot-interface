@@ -172,7 +172,7 @@ export const InputManager = ({ isInputOpen }: {isInputOpen: boolean}) => {
     let commandName: any = splitCmdString.shift();
     let args = splitCmdString.join(" ");
 
-    let responseText = "";
+    let lineText: string = "", outputText: string[] = [];
 
     if (commandName.startsWith("/")) {
       commandName = commandName.slice(1);
@@ -182,32 +182,35 @@ export const InputManager = ({ isInputOpen }: {isInputOpen: boolean}) => {
       );
 
       if (commands) {
-        responseText = commands.run(args);
-        setResponseState({ responseText: " " + responseText.toLocaleUpperCase() });
+        lineText = commands.run(args);
+        setResponseState({ lineText: " " + lineText.toLocaleUpperCase(), outputText: outputText });
         return;
       }
 
       switch (commandName) {
         case "theme":
-          responseText = changeThemeCommand(args);
+          lineText = changeThemeCommand(args);
           break;
         case "color":
-          responseText = changeColorCommand(args);
+          lineText = changeColorCommand(args);
+          break;
+        case "test":
+          outputText = ["theme", "a", "b"];
           break;
         case "cmds":
           showCommandList();
           break;
         case "timer":
-          responseText = runTimerCommand(args);
+          lineText = runTimerCommand(args);
           break;
         case 'info':
-          responseText = setCustomInfoBox(args);
+          lineText = setCustomInfoBox(args);
           break;
         default:
-          responseText = "COMMAND NOT FOUND.";
+          lineText = "COMMAND NOT FOUND.";
       }
 
-      setResponseState({ responseText: " " + responseText.toUpperCase() });
+      setResponseState({ lineText: " " + lineText.toUpperCase(), outputText: outputText });
     }
   };
 

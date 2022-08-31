@@ -17,6 +17,23 @@ const appStyle: { [key: string]: CSSProperties } = {
   }
 }
 
+export const outputCornerStyle: { [key: string]: CSSProperties } = {
+  container: {
+    position: "absolute",
+    top: "10px",
+    left: "10px",
+    display: "flex",
+    whiteSpace: "pre-line",
+  },
+  text: {
+    fontFamily: "Source Code Pro",
+    fontSize: "16px",
+    padding: "2px 4px",
+    marginLeft: "8px",
+    transition: "background 500ms linear",
+  }
+}
+
 const buttonStyle: { [key: string]: CSSProperties } = {
   container: {
     position: "absolute",

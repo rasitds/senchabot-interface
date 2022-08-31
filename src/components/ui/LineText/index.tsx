@@ -23,7 +23,7 @@ const LineText = () => {
     useEffect(() => {
         if (isRunning) {
             setIsRunning(false);
-            setWordArray(responseContext.responseState.responseText.split(" "));
+            setWordArray(responseContext.responseState.lineText.split(" "));
             setWordIndex(0);
         }
     }, [isRunning])

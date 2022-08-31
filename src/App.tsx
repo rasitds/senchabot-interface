@@ -14,6 +14,7 @@ import { InputManager } from './components/InputManager';
 import { InfoBox } from './components/ui/InfoBox';
 import { InfoBoxContext } from './contexts/InfoBoxContext';
 import { ICommandContext } from './commands/ICommand';
+import OutputCorner from './components/ui/OutputCorner';
 
 interface IMainColor {
   background: string;
@@ -81,6 +82,7 @@ function App() {
       <RunContext.Provider value={runContext}>
         <ResponseProvider>
           <InfoBoxContext.Provider value={infoBoxContext}>
+            <OutputCorner />
             {doubleClick && (
             <div style={buttonStyle.container}>
               <div

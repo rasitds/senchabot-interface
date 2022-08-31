@@ -1,5 +1,9 @@
 import { useEffect, useRef } from "react";
 
+/* useRecursiveTimeout hook
+** https://creativecommons.org/licenses/by/4.0/
+** https://www.aaron-powell.com/posts/2019-09-23-recursive-settimeout-with-react-hooks/ Aaron Powell & Tzach Shabtay
+*/
 export function useRecursiveTimeout<t>(
     callback: (() => Promise<t>) | (() => void),
     delay: number | null,
