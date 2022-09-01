@@ -73,63 +73,6 @@ export const InputManager = ({ isInputOpen }: {isInputOpen: boolean}) => {
   );
 
   const { foreground } = mainColor;
-  
-  const changeThemeCommand = (arg: string) => {
-    let commandResponse = "";
-    
-    let theme = new Theme(mainColorContext);
-    theme.themeName = arg;
-
-    return commandResponse;
-  };
-
-  const changeColorCommand = (arg: string) => {
-    let commandResponse = "";
-    let args = arg.split(' ');
-    let type: string = args[0];
-    let fgColorCode: string = args[1];
-    let bgColorCode: string = args[2];
-    
-    /*if (fgColorCode[0] !== "#") {
-      commandResponse = "Color code must start with # character";
-    } else {*/
-      let theme = new Theme(mainColorContext);
-      if (type === "bg" || type.startsWith('back')) {
-        theme.updateColors(bgColorCode, "white");
-      } else if (type === "fg" || type.startsWith('fore')) {
-        theme.updateColors("black", fgColorCode);
-      } else if (type === "both") {
-        theme.updateColors(bgColorCode, fgColorCode);
-      }
-    //}
-    return commandResponse;
-  }
-
-  const showCommandList = () => {
-    /*setTimeout(() => {
-      setInfoBox({ infoBoxText: "" });
-    }, 5000);*/
-
-    let commandListText: string[] = [];
-    
-    let commandList = ["/theme (light, dark, cyan, orange, green, pink, faint-orange, neon-blue, ultra-green)", "/timer (start, pause, reset)", "/info (word{s})", "/color (bg, fg) {code}"];
-
-    fileCommands.filter((r) => commandList.push("/" + r.name + (r.args && " (" + r.args + ")")));
-    
-    const populateArray = async () => {
-      commandList.map(async (command) => {
-        setTimeout(() => {
-          commandListText.push(command + "\n");
-          
-          setInfoBox({
-            infoBoxType: 0,
-            infoBoxText: commandListText,
-          });
-        }, 200);
-      });
-    };
-    populateArray();
-  };
 
   const runTimerCommand = (arg: string) => {
     var commandResponse = "";
@@ -182,24 +125,17 @@ export const InputManager = ({ isInputOpen }: {isInputOpen: boolean}) => {
       );
 
       if (commands) {
-        lineText = commands.run(args);
+        let commandResponse = commands.run(args, mainColorContext, responseContext);
+
+        if (typeof commandResponse === "object")
+          outputText = commandResponse;
+        else lineText = commandResponse;
+        
         setResponseState({ lineText: " " + lineText.toLocaleUpperCase(), outputText: outputText });
         return;
       }
 
       switch (commandName) {
-        case "theme":
-          lineText = changeThemeCommand(args);
-          break;
-        case "color":
-          lineText = changeColorCommand(args);
-          break;
-        case "test":
-          outputText = ["theme", "a", "b"];
-          break;
-        case "cmds":
-          showCommandList();
-          break;
         case "timer":
           lineText = runTimerCommand(args);
           break;

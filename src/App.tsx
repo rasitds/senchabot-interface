@@ -27,7 +27,7 @@ interface IInfoBox {
 }
 
 function App() {
-  const localStorageColors = localStorage.getItem('colors') && (JSON.parse(localStorage.getItem('colors') || "")) || { background: 'black', foreground: '#f2f2f2' };
+  const localStorageColors = localStorage.getItem('themeColors') && (JSON.parse(localStorage.getItem('themeColors') || "")) || { background: 'black', foreground: '#f2f2f2' };
   
   const [isLoading, setIsLoading] = useState(true);
   const [isRunning, setIsRunning] = useState<boolean>(true);
