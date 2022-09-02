@@ -1,4 +1,5 @@
 import { AnyContextType } from "../types";
+import { Config } from "../utils/config.class";
 import { Theme } from "../utils/theme.class";
 
 export default {
@@ -15,11 +16,14 @@ export default {
             return commandResponse;
         }
 
+        let config = new Config();
         let theme = new Theme(mainColorContext, responseContext);
+        
+        let colors = config.getParsedConfig("themeColors");
         if (type === "bg" || type.startsWith('back')) {
-            theme.updateColors(colorCode0, "white");
+            theme.updateColors(colorCode0, colors.foreground);
         } else if (type === "fg" || type.startsWith('fore')) {
-            theme.updateColors("black", colorCode0);
+            theme.updateColors(colors.background, colorCode0);
         } else if (type === "both") {
             theme.updateColors(colorCode0, colorCode1);
         }
