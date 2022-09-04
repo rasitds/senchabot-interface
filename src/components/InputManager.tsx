@@ -20,6 +20,7 @@ import { fileCommands } from "../commands";
 import { Theme } from "../utils/theme.class";
 
 import { useStopwatch } from "react-timer-hook";
+import { CommandRegistry } from "../commands/CommandRegistry";
 
 type InputContextType = {
   inputEnabled: boolean;
@@ -119,6 +120,12 @@ export const InputManager = ({ isInputOpen }: {isInputOpen: boolean}) => {
 
     if (commandName.startsWith("/")) {
       commandName = commandName.slice(1);
+
+      let command = CommandRegistry.getCommand(commandName);
+      if (command) {
+        command.execute(args);
+        return;
+      }
 
       const commands = fileCommands.find((command) =>
         command.name.includes(commandName)
