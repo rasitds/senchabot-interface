@@ -29,6 +29,9 @@ type InputContextType = {
 
 //export const Input = (): FC<{isInputOpen: boolean}> => {
 export const InputManager = ({ isInputOpen }: {isInputOpen: boolean}) => {
+
+  CommandRegistry.registerAllCommands();
+  
   const mainColorContext: AnyContextType = useThemeContext();
   const responseContext: AnyContextType = useResponseContext();
   const infoBoxContext: AnyContextType = useInfoBoxContext();

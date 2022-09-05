@@ -48,7 +48,7 @@ export class ColorCommand implements ICommand{
         let colors = config.getParsedConfig("themeColors");
 
         if (type === "fg" || type.startsWith("f") || type === "both")
-            theme.updateColors(color, colors?.foreground);
+            theme.updateColors(colors?.background, color);
 
         if (type === "both")
         {
@@ -63,13 +63,13 @@ export class ColorCommand implements ICommand{
         }
         
         if (type === "bg" || type.startsWith("b") || type === "both")
-            theme.updateColors(colors?.background, color);
+            theme.updateColors(color, colors?.foreground);
         
-        this.setResponseState("Error", "Color updated successfully.");
+        this.setResponseState("Success", "Color updated successfully.");
     };
 
     setResponseState(message?: string, error?: string) {
-        this.responseContext.setResponseState({ lineText: " " + message?.toUpperCase(), outputText: error });
+        this.responseContext.setResponseState({ lineText: " " + message?.toUpperCase(), outputText: [ error ] });
     }
 
     public help() {

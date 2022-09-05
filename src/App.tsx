@@ -14,7 +14,6 @@ import { InputManager } from './components/InputManager';
 import { InfoBox } from './components/ui/InfoBox';
 import { InfoBoxContext } from './contexts/InfoBoxContext';
 import OutputCorner from './components/ui/OutputCorner';
-import { CommandRegistry } from './commands/CommandRegistry';
 
 interface IMainColor {
   background: string;
@@ -27,9 +26,6 @@ interface IInfoBox {
 }
 
 function App() {
-
-  CommandRegistry.registerAllCommands();
-  
   const localStorageColors = localStorage.getItem('themeColors') && (JSON.parse(localStorage.getItem('themeColors') || "")) || { background: 'black', foreground: '#f2f2f2' };
   
   const [isLoading, setIsLoading] = useState(true);
