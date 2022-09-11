@@ -127,11 +127,7 @@ export const InputManager = ({ isInputOpen }: {isInputOpen: boolean}) => {
       if (commands) {
         let commandResponse = commands.run(args, mainColorContext, responseContext);
 
-        if (typeof commandResponse === "object")
-          outputText = commandResponse;
-        else lineText = commandResponse;
-        
-        setResponseState({ lineText: " " + lineText.toLocaleUpperCase(), outputText: outputText });
+        setResponseState(commandResponse);
         return;
       }
 

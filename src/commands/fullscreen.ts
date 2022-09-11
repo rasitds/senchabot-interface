@@ -8,6 +8,6 @@ export default {
         } else {
             if ((document.fullscreenEnabled) && (elem.requestFullscreen)) elem.requestFullscreen();
         }
-        return "";
+        return { lineText: "", outputText: [] };
     },
 };

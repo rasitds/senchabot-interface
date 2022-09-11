@@ -1,7 +1,7 @@
 export default {
   name: "print",
-  args: "text",
-  run(arg: string) {
-    return arg;
+  args: "<text>",
+  run(param: string) {
+    return { lineText: param, outputText: [] };
   },
 };
