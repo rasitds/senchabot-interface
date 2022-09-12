@@ -15,46 +15,47 @@ export default {
         let type: string = args[0];
 
         if (!this.params.includes(type)) {
-            return { lineText: "ERROR", outputText: [ INVALIDPARAM_MSG ] };
+            return { lineText: "Parameter Error", outputText: [ INVALIDPARAM_MSG ] };
         }
 
         let colorCode: string = args[1];
 
-        if (!colorCode) {
-            return { lineText: "ERROR", outputText: [ INVALIDCOLOR_MSG ] };
+        if (colorCode === undefined || colorCode === "") {
+            return { lineText: "colorCode Error", outputText: [ INVALIDCOLOR_MSG ] };
         }
 
         let colorOption = new Option().style;
         colorOption.color = colorCode;
 
-        if (!colorOption.color) {
-            return { lineText: "ERROR", outputText: [ INVALIDCOLOR_MSG ] };
+        if (colorOption.color === "") {
+            return { lineText: "colorCode Error", outputText: [ INVALIDCOLOR_MSG ] };
         }
 
         let config = new Config();
-        let theme = new Theme(mainColorContext, responseContext);
-        
+        let theme = new Theme(mainColorContext, responseContext);    
         let colors = config.getParsedConfig("themeColors");
-        if (type === "bg" || type.startsWith('back')) {
-            theme.updateColors(colorCode, colors?.foreground);
-        } else if (type === "fg" || type.startsWith('fore')) {
+        
+        if (type === "fg" || type.startsWith('f') || type === "both")
             theme.updateColors(colors?.background, colorCode);
-        } else if (type === "both") {
-            let colorCode1: string = args[2];
-
-            if (!colorCode1) {
-                return { lineText: "ERROR", outputText: [ INVALIDCOLOR_MSG ] };
+        
+        if (type === "both") {
+            colorCode = args[2];
+            
+            if (!colorCode || !colorCode.startsWith("#")) {
+                return { lineText: "colorCode2 Error", outputText: [ INVALIDCOLOR_MSG ] };
             }
-
-            colorOption.color = colorCode1;
+            
+            colorOption = new Option().style;
+            colorOption.color = colorCode;
 
             if (!colorOption.color) {
-                return { lineText: "ERROR", outputText: [ INVALIDCOLOR_MSG ] };
+                return { lineText: "colorCode2 Error", outputText: [ INVALIDCOLOR_MSG ] };
             }
-
-            theme.updateColors(colorCode, colorCode1);
         }
-
+        
+        if (type === "bg" || type.startsWith('b') || type === "both")
+            theme.updateColors(colorCode, colors?.foreground);
+        
         return commandResponse;
     }
 }
