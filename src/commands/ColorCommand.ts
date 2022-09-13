@@ -30,18 +30,18 @@ export class ColorCommand implements ICommand{
         let args: string[] = parameters.split(' ');
         let type: string = args[0];
         if (!this.params?.includes(type) || !this.startsWithParams?.includes(type[0]))
-            return this.setResponseState("Error", this.InvalidParameterMessage);
+            return this.setResponseState("Parameter Error", this.InvalidParameterMessage);
 
         let color: string = args[1];
         
         if (color === undefined || color === "")
-            return this.setResponseState("Error", "");
+            return this.setResponseState("colorcode Error", this.InvalidColorMessage);
 
         var colorOption = new Option().style;
         colorOption.color = color;
 
         if (colorOption.color === "")
-            return this.setResponseState("Error", this.InvalidColorMessage);
+            return this.setResponseState("colorcode Error", this.InvalidColorMessage);
         
         let config = new Config();
         let theme = new Theme(this.mainColorContext, this.responseContext);
@@ -53,13 +53,14 @@ export class ColorCommand implements ICommand{
         if (type === "both")
         {
             color = args[2];
-            if (color === undefined || color === "")
-                return this.setResponseState("Error", this.InvalidColorMessage);
+            if (color === undefined || color === "" || !color.startsWith('#'))
+                return this.setResponseState("colorcode2 Error", this.InvalidColorMessage);
 
+            colorOption = new Option().style;
             colorOption.color = color;
 
             if (colorOption.color === "")
-                return this.setResponseState("Error", this.InvalidColorMessage);
+                return this.setResponseState("colorcode2 Error", this.InvalidColorMessage);
         }
         
         if (type === "bg" || type.startsWith("b") || type === "both")
