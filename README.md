@@ -1,10 +1,6 @@
 # RFLCT Web UI
 
-<<<<<<< HEAD
-Web UI for AI or Assistant
-=======
 Web UI for AI / Assistant
->>>>>>> main
 
 **Current Stage: `pre-alpha`**
 
