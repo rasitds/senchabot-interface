@@ -16,7 +16,7 @@ import { AnyContextType } from "../types";
 import TextInput from './TextInput';
 import TerminalInput from "./TerminalInput";
 
-import { fileCommands } from "../commands";
+//import { fileCommands } from "../commands";
 import { Theme } from "../utils/theme.class";
 
 import { useStopwatch } from "react-timer-hook";
@@ -98,22 +98,6 @@ export const InputManager = ({ isInputOpen }: {isInputOpen: boolean}) => {
     return commandResponse;
   }
 
-  const setCustomInfoBox = (arg: string) => {
-    let commandResponse = "";
-
-    if (!arg.length) commandResponse = "TEXT NOT GIVEN";
-    
-    if (arg.includes('timer')) {
-      setTimeout(() => {
-        setInfoBox({infoBoxText: ''});
-      }, 2000);
-    }
-    arg = arg.replace('timer', '');
-    setInfoBox({infoBoxText: arg});
-
-    return commandResponse;
-  }
-
   const runCommand = (cmdString: string) => {
     let splitCmdString = cmdString.split(" ");
     let commandName: any = splitCmdString.shift();
@@ -130,27 +114,9 @@ export const InputManager = ({ isInputOpen }: {isInputOpen: boolean}) => {
         return;
       }
 
-      const commands = fileCommands.find((command) =>
-        command.name.includes(commandName)
-      );
-
-      if (commands) {
-        let commandResponse = commands.run(args, mainColorContext, responseContext);
-
-        if (typeof commandResponse === "object")
-          outputText = commandResponse;
-        else lineText = commandResponse;
-        
-        setResponseState({ lineText: " " + lineText.toLocaleUpperCase(), outputText: outputText });
-        return;
-      }
-
       switch (commandName) {
         case "timer":
           lineText = runTimerCommand(args);
-          break;
-        case 'info':
-          lineText = setCustomInfoBox(args);
           break;
         default:
           lineText = "COMMAND NOT FOUND.";

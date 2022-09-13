@@ -66,18 +66,21 @@ export class Theme extends Config {
                 const responseData = await response.json();
 
                 if (responseData.message) {
-                    this.setResponseState({ lineText: '', outputText: ["Connecting to the server...", "Status Check: OK", responseData.message]});
+                    this.setResponseState({ lineText: "./", outputText: ["Connecting to the server...", "Status Check: OK", responseData.message]});
 
                     this._data = super.getParsedConfig('themeColors') || { background: 'black', foreground: 'white' };
                     this._themeName = "custom";
-                } else this._data = responseData;
+                } else {
+                  this._data = responseData;
+                  this.setResponseState({ lineText: "X/", outputText: [ "Theme changed successfully." ] })
+                }
                 
                 this.setMainColor(this._data);
                 
                 super.setConfig('colorTheme', JSON.stringify(this._themeName));
                 super.setConfig('themeColors', JSON.stringify(this._data));
             }
-        }).catch(error => this.setResponseState({ lineText: '', outputText: ["Connecting to the server...", "Status Check", error]})
+        }).catch(error => this.setResponseState({ lineText: 'Network Error', outputText: ["Connecting to the server...", "Status Check", error]})
         );
     }
 }

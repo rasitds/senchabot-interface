@@ -78,7 +78,7 @@ export class ColorCommand implements ICommand{
     };
 
     public description?: string = "Change the color of the terminal.";
-    public usage?: string = "color <fg|bg|both> <color> <color?>";
+    public usage?: string = "/color <fg|bg|both> <color> <color?>";
     public hidden?: boolean = false;
     public admin?: boolean = false;
 }

@@ -1,5 +1,9 @@
+import { InitializeCmdListCommand } from "./CmdListCommand";
 import { InitializeColorCommand } from "./ColorCommand";
+import { InitializeFullscreenCommand } from "./FullscreenCommand";
 import { ICommand } from "./ICommand";
+import { InitializePrintCommand } from "./PrintCommand";
+import { InitializeThemeCommand } from "./ThemeCommand";
 
 export class CommandRegistry  {
     private _Commands : ICommand[] = [];
@@ -37,5 +41,9 @@ export class CommandRegistry  {
 
     public static registerAllCommands() : void {
         CommandRegistry.AddCommand(InitializeColorCommand());
+        CommandRegistry.AddCommand(InitializeThemeCommand());
+        CommandRegistry.AddCommand(InitializePrintCommand());
+        CommandRegistry.AddCommand(InitializeFullscreenCommand());
+        CommandRegistry.AddCommand(InitializeCmdListCommand());
     }
 }
