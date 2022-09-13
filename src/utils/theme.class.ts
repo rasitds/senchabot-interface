@@ -72,7 +72,7 @@ export class Theme extends Config {
                     this._themeName = "custom";
                 } else {
                   this._data = responseData;
-                  this.setResponseState({ lineText: "X/", outputText: [ "Theme changed successfully." ] })
+                  this.setResponseState({ lineText: '', outputText: [ "Theme changed successfully."]});                  
                 }
                 
                 this.setMainColor(this._data);

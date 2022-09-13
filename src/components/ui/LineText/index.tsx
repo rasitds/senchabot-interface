@@ -20,10 +20,13 @@ const LineText = () => {
     const [wordIndex, setWordIndex] = useState(0);
     const [wordTimeout, setWordTimeout] = useState(500);
 
+    const lineText = responseContext.responseState.lineText;
+
     useEffect(() => {
         if (isRunning) {
             setIsRunning(false);
-            setWordArray(responseContext.responseState.lineText.split(" "));
+            var upperCaseLineText = lineText.toUpperCase();
+            setWordArray(upperCaseLineText.split(" "));
             setWordIndex(0);
         }
     }, [isRunning])

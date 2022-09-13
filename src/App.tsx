@@ -14,6 +14,7 @@ import { InputManager } from './components/InputManager';
 import { InfoBox } from './components/ui/InfoBox';
 import { InfoBoxContext } from './contexts/InfoBoxContext';
 import OutputCorner from './components/ui/OutputCorner';
+import { Config } from './utils/config.class';
 
 interface IMainColor {
   background: string;
@@ -26,8 +27,10 @@ interface IInfoBox {
 }
 
 function App() {
-  const localStorageColors = localStorage.getItem('themeColors') && (JSON.parse(localStorage.getItem('themeColors') || "")) || { background: 'black', foreground: '#f2f2f2' };
-  
+  const config = new Config();
+  const colors = config.getParsedConfig("themeColors");
+  const localStorageColors = { background: colors?.background || '#000000', foreground: colors?.foreground || '#F2F2F2' };
+
   const [isLoading, setIsLoading] = useState(true);
   const [isRunning, setIsRunning] = useState<boolean>(true);
   // Create state variables for background and foreground

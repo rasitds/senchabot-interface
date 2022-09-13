@@ -16,7 +16,6 @@ import { AnyContextType } from "../types";
 import TextInput from './TextInput';
 import TerminalInput from "./TerminalInput";
 
-//import { fileCommands } from "../commands";
 import { Theme } from "../utils/theme.class";
 
 import { useStopwatch } from "react-timer-hook";
