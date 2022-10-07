@@ -1,4 +1,4 @@
-# RFLCT Web UI
+# Sencha Web UI for rflct.dev
 
 Web UI for AI / Assistant
 
