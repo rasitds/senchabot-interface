@@ -10,6 +10,10 @@ Thanks to [Aaron Powell](https://disqus.com/by/Aaron_Powell/) and [Tzach Shabtay
 
 Thanks to [Victor Tomaili](https://github.com/VictorTomaili) for the code and UX contribution.
 
+## License
+
+This project is licensed under the terms of the [MIT license](/LICENSE).
+
 ---
 
 ## Fonts
