@@ -5,7 +5,7 @@ import { infoBoxStyle } from "../../styles";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { InfoBoxContext } from "../../contexts/InfoBoxContext";
 
-import Typewriter from 'typewriter-effect'
+import Typewriter from "typewriter-effect";
 
 import { AnyContextType } from "../../types";
 
@@ -23,42 +23,46 @@ export const InfoBox: FC<{}> = ({}) => {
 
   return (
     <div
-      style={transparentBackground ? ({
-        ...infoBoxStyle.container,
-        backgroundColor: 'transparent',
-        opacity: !infoBoxText ? 0 : 1,
-      }) : ({
-        ...infoBoxStyle.container,
-        backgroundColor: foreground,
-        borderTop: `2px solid ${foreground}`,
-        borderBottom: `2px solid ${foreground}`,
-        opacity: !infoBoxText ? 0 : 1,
-      })}
+      style={
+        transparentBackground
+          ? {
+              ...infoBoxStyle.container,
+              backgroundColor: "transparent",
+              opacity: !infoBoxText ? 0 : 1,
+            }
+          : {
+              ...infoBoxStyle.container,
+              backgroundColor: foreground,
+              borderTop: `2px solid ${foreground}`,
+              borderBottom: `2px solid ${foreground}`,
+              opacity: !infoBoxText ? 0 : 1,
+            }
+      }
     >
       {infoBoxType === 0 ? (
-      <div
-        style={{
-          ...infoBoxStyle.infoTextStyle,
-          color: textColor,
-        }}
-      >
-        <Typewriter options={{
-          strings: infoBoxText,
-          autoStart: true,
-          loop: true,
-        }}/>
-      </div>
-      )
-      :
-      (
-      <div
-        style={{
-          ...infoBoxStyle.timerTextStyle,
-          color: textColor,
-        }}
-      >
-        {infoBoxText}
-      </div>
+        <div
+          style={{
+            ...infoBoxStyle.infoTextStyle,
+            color: textColor,
+          }}
+        >
+          <Typewriter
+            options={{
+              strings: infoBoxText,
+              autoStart: true,
+              loop: true,
+            }}
+          />
+        </div>
+      ) : (
+        <div
+          style={{
+            ...infoBoxStyle.timerTextStyle,
+            color: textColor,
+          }}
+        >
+          {infoBoxText}
+        </div>
       )}
     </div>
   );

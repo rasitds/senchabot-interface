@@ -14,8 +14,8 @@ const appStyle: { [key: string]: CSSProperties } = {
     position: "fixed",
     height: "100%",
     marginBottom: "16px",
-  }
-}
+  },
+};
 
 export const outputCornerStyle: { [key: string]: CSSProperties } = {
   container: {
@@ -31,8 +31,8 @@ export const outputCornerStyle: { [key: string]: CSSProperties } = {
     padding: "2px 4px",
     marginLeft: "8px",
     transition: "background 500ms linear",
-  }
-}
+  },
+};
 
 const buttonStyle: { [key: string]: CSSProperties } = {
   container: {
@@ -49,8 +49,8 @@ const buttonStyle: { [key: string]: CSSProperties } = {
     cursor: "default",
     userSelect: "none",
     transition: "background 500ms linear",
-  }
-}
+  },
+};
 
 const infoBoxStyle: { [key: string]: CSSProperties } = {
   container: {
@@ -79,7 +79,7 @@ const infoBoxStyle: { [key: string]: CSSProperties } = {
   },
 };
 
-const mainStyle: {[key: string]: CSSProperties } = {
+const mainStyle: { [key: string]: CSSProperties } = {
   line: {
     marginTop: "2.4em",
     color: foreground,
@@ -97,7 +97,7 @@ const mainStyle: {[key: string]: CSSProperties } = {
     fontFamily: "reem",
     fontSize: "28px",
     userSelect: "none",
-  }
-}
+  },
+};
 
 export { appStyle, buttonStyle, infoBoxStyle, mainStyle };
