@@ -1,36 +1,25 @@
-import React, { useEffect, useMemo, useState, createContext } from "react";
-
 import "./App.css";
-
 import { appStyle, buttonStyle } from "./styles";
+import { useEffect, useMemo, useState } from "react";
 
-import { ThemeContext } from "./contexts/ThemeContext";
+import { IMainColor, ThemeContext } from "./contexts/ThemeContext";
 import { RunContext } from "./contexts/RunContext";
-import {
-  ResponseProvider /*, useResponseContext*/,
-} from "./contexts/ResponseContext";
+import { IInfoBox, InfoBoxContext } from "./contexts/InfoBoxContext";
+import { ResponseProvider } from "./contexts/ResponseContext";
+
+import { InfoBox } from "./components/ui/InfoBox";
+import { Config } from "./utils/config.class";
+
+import { InputManager } from "./components/InputManager";
 
 import BootLine from "./components/ui/BootLine";
 import LineText from "./components/ui/LineText";
-import { InputManager } from "./components/InputManager";
-import { InfoBox } from "./components/ui/InfoBox";
-import { InfoBoxContext } from "./contexts/InfoBoxContext";
 import OutputCorner from "./components/ui/OutputCorner";
-import { Config } from "./utils/config.class";
-
-interface IMainColor {
-  background: string;
-  foreground: string;
-}
-
-interface IInfoBox {
-  infoBoxType: number;
-  infoBoxText: string;
-}
 
 function App() {
   const config = new Config();
   const colors = config.getParsedConfig("themeColors");
+
   const localStorageColors = {
     background: colors?.background || "#000000",
     foreground: colors?.foreground || "#F2F2F2",
@@ -47,8 +36,6 @@ function App() {
 
   const [isInputOpen, setIsInputOpen] = useState(true);
   const [doubleClick, setDoubleClick] = useState(false);
-
-  const [command, setCommand] = useState("");
 
   const themeContext = useMemo(
     () => ({ mainColor, setMainColor }),

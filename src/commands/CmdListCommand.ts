@@ -19,9 +19,11 @@ export class CmdListCommand implements ICommand {
   public execute(args: string): void {
     const commands = CommandRegistry.Commands();
 
-    let commandList: string[] = ["/timer <start|pause|reset>"];
+    let commandList: string[] = [];
 
     commands.filter((r) => commandList.push(r.usage || ""));
+
+    console.log("commandList", commandList);
 
     this.setResponseState(commandList);
   }

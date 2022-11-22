@@ -1,5 +1,10 @@
 import { createContext, useContext } from "react";
 
+export interface IInfoBox {
+  infoBoxType: number;
+  infoBoxText: string;
+}
+
 const InfoBoxContext = createContext({});
 
 function useInfoBoxContext() {

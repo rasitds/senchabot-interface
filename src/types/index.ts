@@ -2,4 +2,9 @@ type AnyContextType = {
   [key: string]: any;
 };
 
-export type { AnyContextType };
+type InputContextType = {
+  inputEnabled: boolean;
+  inputValue: string;
+};
+
+export type { AnyContextType, InputContextType };

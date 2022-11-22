@@ -1,5 +1,10 @@
 import { createContext, useContext } from "react";
 
+export interface IMainColor {
+  background: string;
+  foreground: string;
+}
+
 const ThemeContext = createContext({});
 
 function useThemeContext() {
