@@ -13,10 +13,6 @@ const sentences = ["WHAT ARE YOUR COMMANDS?", "WHAT IS YOUR COMMAND?"];
 const randomNum: any = Math.random().toFixed(0);
 const randomTxt: string = sentences[randomNum];
 
-/*type Props = {
-    children: ReactNode;
-}*/
-
 interface IResponseContext {
   lineText: string;
   outputText: string[];

@@ -1,6 +1,4 @@
 import { appStyle } from "../styles";
-import AngleUp from "./ui/AngleUp";
-
 import { useEffect, useMemo, useState } from "react";
 
 import { InputContext } from "../contexts/InputContext";
@@ -9,27 +7,21 @@ import {
   useResponseContext,
 } from "../contexts/ResponseContext";
 import { useThemeContext } from "../contexts/ThemeContext";
-import { useInfoBoxContext } from "../contexts/InfoBoxContext";
 import { CommandContext } from "../contexts/CommandContext";
-import { AnyContextType } from "../types";
 
+import AngleUp from "./ui/AngleUp";
 import TextInput from "./TextInput";
 import TerminalInput from "./TerminalInput";
 
 import { CommandRegistry } from "../commands/CommandRegistry";
 
-type InputContextType = {
-  inputEnabled: boolean;
-  inputValue: string;
-};
+import { AnyContextType, InputContextType } from "../types";
 
-//export const Input = (): FC<{isInputOpen: boolean}> => {
 export const InputManager = ({ isInputOpen }: { isInputOpen: boolean }) => {
   CommandRegistry.registerAllCommands();
 
   const mainColorContext: AnyContextType = useThemeContext();
   const responseContext: AnyContextType = useResponseContext();
-  const infoBoxContext: AnyContextType = useInfoBoxContext();
 
   const { mainColor } = mainColorContext;
   const { setResponseState } = responseContext;

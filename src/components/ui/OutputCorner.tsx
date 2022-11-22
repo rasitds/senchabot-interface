@@ -4,7 +4,7 @@ import { outputCornerStyle } from "../../styles";
 import { AnyContextType } from "../../types";
 import { useRecursiveTimeout } from "../../utils/hooks";
 
-var DELAYMS_DEFAULT = 1000;
+const DELAYMS_DEFAULT = 1000;
 
 const OutputCorner = () => {
   const [displayStatus, setDisplayStatus] = useState(true);
