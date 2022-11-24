@@ -40,6 +40,9 @@ export class Theme extends Config {
       this.colorsObj = localColors;
     }
 
+    super.setConfig("themeColors", JSON.stringify(this.colorsObj));
+    //super.setConfig("colorTheme", JSON.stringify(this.themeName));
+
     return this.colorsObj;
   }
 
@@ -55,7 +58,7 @@ export class Theme extends Config {
       body: JSON.stringify(this.colorsObj),
     };
 
-    fetch("http://127.0.0.1:1010/themes", requestOptions)
+    fetch("http://127.0.0.1:1010/api/themes", requestOptions)
       .then(async (response) => {
         const isJSON = response.headers
           .get("content-type")
@@ -78,7 +81,7 @@ export class Theme extends Config {
   }
 
   private refreshTheme() {
-    fetch("http://127.0.0.1:1010/themes/" + this.themeName)
+    fetch("http://127.0.0.1:1010/api/themes/" + this.themeName)
       .then(async (response) => {
         if (!response.ok) return Promise.reject(response.status);
         else {
