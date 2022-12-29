@@ -1,6 +1,6 @@
-# Sencha Web UI for rflct.dev
+# Sencha Web UI
 
-Web UI for AI / Assistant
+Open-Source Web UI for AI / Assistant
 
 **Current Stage: `pre-alpha`**
 
