@@ -37,6 +37,19 @@ export interface IMainColor {
   foreground: string;
 }
 
+const updateColors = (data: IMainColor) => {
+  muiTheme = createTheme({
+    palette: {
+      primary: {
+        main: data.foreground ?? "#FFF",
+      },
+      background: {
+        default: data.background ?? "#000",
+      },
+    },
+  });
+};
+
 function App() {
   const theme = new Theme(useResponseContext);
   const themeColors = theme.getColors();
@@ -54,19 +67,6 @@ function App() {
 
   const runContext = useMemo(() => ({ isRunning, setIsRunning }), [isRunning]);
   const infoBoxContext = useMemo(() => ({ infoBox, setInfoBox }), [infoBox]);
-
-  const updateColors = (data: IMainColor) => {
-    muiTheme = createTheme({
-      palette: {
-        primary: {
-          main: data.foreground ?? "#FFF",
-        },
-        background: {
-          default: data.background ?? "#000",
-        },
-      },
-    });
-  };
 
   useEffect(() => {
     updateColors(themeColors);
