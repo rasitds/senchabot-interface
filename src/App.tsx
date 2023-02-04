@@ -8,10 +8,8 @@ import { useEffect, useMemo, useState } from "react";
 
 import { RunContext } from "./contexts/RunContext";
 import { IInfoBox, InfoBoxContext } from "./contexts/InfoBoxContext";
-import {
-  ResponseProvider,
-  useResponseContext,
-} from "./contexts/ResponseContext";
+import { ResponseProvider } from "./contexts/ResponseContext";
+import { useResponseContext } from "./contexts/ResponseContext";
 
 import { InfoBox } from "./components/ui/InfoBox";
 
@@ -20,6 +18,7 @@ import { InputManager } from "./components/InputManager";
 import BootLine from "./components/ui/BootLine";
 import LineText from "./components/ui/LineText";
 import OutputCorner from "./components/ui/OutputCorner";
+import { IMainColor } from "./types";
 
 let muiTheme = createTheme({
   palette: {
@@ -31,11 +30,6 @@ let muiTheme = createTheme({
     },
   },
 });
-
-export interface IMainColor {
-  background: string;
-  foreground: string;
-}
 
 const updateColors = (data: IMainColor) => {
   muiTheme = createTheme({

@@ -1,4 +1,4 @@
-import { useContext, FC } from "react";
+import { useContext } from "react";
 
 import { infoBoxStyle } from "../../styles";
 
@@ -9,7 +9,7 @@ import Typewriter from "typewriter-effect";
 import { AnyContextType } from "../../types";
 import { useTheme } from "@mui/material";
 
-export const InfoBox: FC<{}> = ({}) => {
+export const InfoBox = () => {
   const theme = useTheme();
 
   const infoBoxContext: AnyContextType = useContext(InfoBoxContext);

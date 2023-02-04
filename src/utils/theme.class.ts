@@ -1,10 +1,10 @@
-import { IMainColor } from "../App";
-import { AnyContextType } from "../types";
+import { HOST } from "../config";
+import { AnyContextType, IMainColor } from "../types";
 import { Config } from "./config.class";
 
 export class Theme extends Config {
   private _themeName = "custom";
-  private _data: { [key: string]: string } = {};
+  private _themeData: { [key: string]: string } = {};
   private colorsObj: IMainColor = { background: "", foreground: "" };
   private setResponseState;
 
@@ -34,14 +34,13 @@ export class Theme extends Config {
     this.colorsObj = {
       background: "#000",
       foreground: "#f2f2f2",
-    }; //localStorageColors ?? ;
+    };
 
     if (localColors) {
       this.colorsObj = localColors;
     }
 
     super.setConfig("themeColors", JSON.stringify(this.colorsObj));
-    //super.setConfig("colorTheme", JSON.stringify(this.themeName));
 
     return this.colorsObj;
   }
@@ -58,7 +57,7 @@ export class Theme extends Config {
       body: JSON.stringify(this.colorsObj),
     };
 
-    fetch("http://127.0.0.1:1010/api/themes", requestOptions)
+    fetch(HOST + "api/themes", requestOptions)
       .then(async (response) => {
         const isJSON = response.headers
           .get("content-type")
@@ -81,7 +80,7 @@ export class Theme extends Config {
   }
 
   private refreshTheme() {
-    fetch("http://127.0.0.1:1010/api/themes/" + this.themeName)
+    fetch(HOST + "api/themes/" + this.themeName)
       .then(async (response) => {
         if (!response.ok) return Promise.reject(response.status);
         else {
@@ -97,21 +96,21 @@ export class Theme extends Config {
               ],
             });
 
-            this._data = super.getParsedConfig("themeColors") || {
+            this._themeData = super.getParsedConfig("themeColors") || {
               background: "black",
               foreground: "white",
             };
-            this._themeName = "custom";
+            this.themeName = "custom";
           } else {
-            this._data = responseData;
+            this._themeData = responseData;
             this.setResponseState({
               lineText: "",
               outputText: ["Theme changed successfully."],
             });
           }
 
-          super.setConfig("colorTheme", JSON.stringify(this._themeName));
-          super.setConfig("themeColors", JSON.stringify(this._data));
+          super.setConfig("colorTheme", JSON.stringify(this.themeName));
+          super.setConfig("themeColors", JSON.stringify(this._themeData));
         }
       })
       .catch((error) =>
