@@ -1,34 +1,56 @@
 import "./App.css";
 import { appStyle, buttonStyle } from "./styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { CssBaseline } from "@mui/material";
+import { Theme } from "./utils/theme.class";
+
 import { useEffect, useMemo, useState } from "react";
 
-import { IMainColor, ThemeContext } from "./contexts/ThemeContext";
 import { RunContext } from "./contexts/RunContext";
 import { IInfoBox, InfoBoxContext } from "./contexts/InfoBoxContext";
 import { ResponseProvider } from "./contexts/ResponseContext";
+import { useResponseContext } from "./contexts/ResponseContext";
 
 import { InfoBox } from "./components/ui/InfoBox";
-import { Config } from "./utils/config.class";
 
 import { InputManager } from "./components/InputManager";
 
 import BootLine from "./components/ui/BootLine";
 import LineText from "./components/ui/LineText";
 import OutputCorner from "./components/ui/OutputCorner";
+import { IMainColor } from "./types";
+
+let muiTheme = createTheme({
+  palette: {
+    primary: {
+      main: "#FFF",
+    },
+    background: {
+      default: "#000",
+    },
+  },
+});
+
+const updateColors = (data: IMainColor) => {
+  muiTheme = createTheme({
+    palette: {
+      primary: {
+        main: data.foreground ?? "#FFF",
+      },
+      background: {
+        default: data.background ?? "#000",
+      },
+    },
+  });
+};
 
 function App() {
-  const config = new Config();
-  const colors = config.getParsedConfig("themeColors");
-
-  const localStorageColors = {
-    background: colors?.background || "#000000",
-    foreground: colors?.foreground || "#F2F2F2",
-  };
+  const theme = new Theme(useResponseContext);
+  const themeColors = theme.getColors();
 
   const [isLoading, setIsLoading] = useState(true);
   const [isRunning, setIsRunning] = useState<boolean>(true);
-  // Create state variables for background and foreground
-  const [mainColor, setMainColor] = useState<IMainColor>(localStorageColors);
+
   const [infoBox, setInfoBox] = useState<IInfoBox>({
     infoBoxType: 0,
     infoBoxText: "",
@@ -37,25 +59,16 @@ function App() {
   const [isInputOpen, setIsInputOpen] = useState(true);
   const [doubleClick, setDoubleClick] = useState(false);
 
-  const themeContext = useMemo(
-    () => ({ mainColor, setMainColor }),
-    [mainColor]
-  );
   const runContext = useMemo(() => ({ isRunning, setIsRunning }), [isRunning]);
   const infoBoxContext = useMemo(() => ({ infoBox, setInfoBox }), [infoBox]);
 
-  const updateColors = (data: IMainColor) => {
-    document.body.style.backgroundColor = data.background;
-    document.body.style.color = data.foreground;
-  };
-
   useEffect(() => {
-    updateColors(mainColor);
+    updateColors(themeColors);
 
     setTimeout(() => {
       setIsLoading(false);
     }, 1500);
-  }, [mainColor]);
+  }, [themeColors]);
 
   const handleKeyDown = (e: any) => {
     console.log("handleKeyDown e.code", e.code);
@@ -69,14 +82,13 @@ function App() {
 
   return (
     <>
-      {isLoading ? (
-        <div style={appStyle.body}>
-          <ThemeContext.Provider value={themeContext}>
+      <ThemeProvider theme={muiTheme}>
+        <CssBaseline />
+        {isLoading ? (
+          <div style={appStyle.body}>
             <BootLine />
-          </ThemeContext.Provider>
-        </div>
-      ) : (
-        <ThemeContext.Provider value={themeContext}>
+          </div>
+        ) : (
           <RunContext.Provider value={runContext}>
             <ResponseProvider>
               <InfoBoxContext.Provider value={infoBoxContext}>
@@ -86,11 +98,11 @@ function App() {
                     <div
                       style={{
                         ...buttonStyle.buttonBox,
-                        color: mainColor.background,
-                        backgroundColor: mainColor.foreground,
-                        border: `1px double ${mainColor.foreground}`,
+                        color: themeColors.background,
+                        backgroundColor: themeColors.foreground,
+                        border: `1px double ${themeColors.foreground}`,
                         borderStyle: "solid",
-                        boxShadow: `2px 2px ${mainColor.foreground}`,
+                        boxShadow: `2px 2px ${themeColors.foreground}`,
                         fontWeight: "bold",
                         fontFamily: "ald",
                       }}
@@ -112,8 +124,8 @@ function App() {
               </InfoBoxContext.Provider>
             </ResponseProvider>
           </RunContext.Provider>
-        </ThemeContext.Provider>
-      )}
+        )}
+      </ThemeProvider>
     </>
   );
 }

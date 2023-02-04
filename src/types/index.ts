@@ -7,4 +7,9 @@ type InputContextType = {
   inputValue: string;
 };
 
+export interface IMainColor {
+  background: string;
+  foreground: string;
+}
+
 export type { AnyContextType, InputContextType };
