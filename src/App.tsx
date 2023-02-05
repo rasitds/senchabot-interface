@@ -19,6 +19,7 @@ import BootLine from "./components/ui/BootLine";
 import LineText from "./components/ui/LineText";
 import OutputCorner from "./components/ui/OutputCorner";
 import { IMainColor } from "./types";
+import { ConfigMenu } from "./components/ConfigMenu";
 
 let muiTheme = createTheme({
   palette: {
@@ -78,6 +79,7 @@ function App() {
 
   const handleDoubleClick = (e: any) => {
     setDoubleClick(true);
+    setIsRunning(false);
   };
 
   return (
@@ -93,34 +95,22 @@ function App() {
             <ResponseProvider>
               <InfoBoxContext.Provider value={infoBoxContext}>
                 <OutputCorner />
-                {doubleClick && (
-                  <div style={buttonStyle.container}>
+                {doubleClick && !isRunning ? (
+                  <ConfigMenu />
+                ) : (
+                  <>
                     <div
-                      style={{
-                        ...buttonStyle.buttonBox,
-                        color: themeColors.background,
-                        backgroundColor: themeColors.foreground,
-                        border: `1px double ${themeColors.foreground}`,
-                        borderStyle: "solid",
-                        boxShadow: `2px 2px ${themeColors.foreground}`,
-                        fontWeight: "bold",
-                        fontFamily: "ald",
-                      }}
+                      style={appStyle.body}
+                      onKeyDown={handleKeyDown}
+                      onDoubleClick={handleDoubleClick}
+                      tabIndex={-1}
                     >
-                      doubleClick
+                      <InfoBox />
+                      <LineText />
                     </div>
-                  </div>
+                    <InputManager isInputOpen={isInputOpen} />
+                  </>
                 )}
-                <div
-                  style={appStyle.body}
-                  onKeyDown={handleKeyDown}
-                  onDoubleClick={handleDoubleClick}
-                  tabIndex={-1}
-                >
-                  <InfoBox />
-                  <LineText />
-                </div>
-                <InputManager isInputOpen={isInputOpen} />
               </InfoBoxContext.Provider>
             </ResponseProvider>
           </RunContext.Provider>

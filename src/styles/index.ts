@@ -22,6 +22,7 @@ export const outputCornerStyle: { [key: string]: CSSProperties } = {
     left: "10px",
     display: "flex",
     whiteSpace: "pre-line",
+    userSelect: "none",
   },
   text: {
     fontFamily: "Source Code Pro",
@@ -29,6 +30,9 @@ export const outputCornerStyle: { [key: string]: CSSProperties } = {
     padding: "2px 4px",
     marginLeft: "8px",
     transition: "background 500ms linear",
+  },
+  button: {
+    fontWeight: "bold",
   },
 };
 
