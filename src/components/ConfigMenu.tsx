@@ -1,17 +1,21 @@
 import { useState, useEffect, useContext } from "react";
 import { useTheme } from "@mui/material";
 import { outputCornerStyle } from "../styles";
-import { RunContext } from "../contexts/RunContext";
+import { ModeContext } from "../contexts/ModeContext";
 
 const CONFIG_MENU_TITLE = "CONFIGURATION MENU\n\n";
 
-const menuArray = ["Switch to Voice Input", "Switch to Text Input", "Exit"];
+const menuArray = [
+  "Switch to Voice Input",
+  "Switch to Text Input",
+  "Exit Config Menu",
+];
 
 export const ConfigMenu = () => {
   const theme = useTheme();
   const background = theme.palette.background.default;
 
-  const { isRunning, setIsRunning } = useContext(RunContext);
+  const { mode, setMode } = useContext(ModeContext);
 
   const [texts, setTexts] = useState(CONFIG_MENU_TITLE);
   const [button, setButton] = useState(0);
@@ -37,10 +41,14 @@ export const ConfigMenu = () => {
             setTexts("Switching to Text Input Mode\n\n");
             break;
           case 2:
-            setTexts("Exit\n\n");
-            setIsRunning(true);
+            setTexts("Exit Command Executed\n\n");
+            const timeout = setTimeout(() => {
+              setMode(0);
+              clearTimeout(timeout);
+            }, 1000);
             break;
         }
+        menuButton = 0;
       }
     });
   }, []);
