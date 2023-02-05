@@ -1,6 +1,6 @@
-import { CSSProperties } from "react";
+import { StyleType } from "../types";
 
-const appStyle: { [key: string]: CSSProperties } = {
+const appStyle: StyleType = {
   body: {
     height: "100vh",
     display: "flex",
@@ -15,7 +15,7 @@ const appStyle: { [key: string]: CSSProperties } = {
   },
 };
 
-export const outputCornerStyle: { [key: string]: CSSProperties } = {
+export const outputCornerStyle: StyleType = {
   container: {
     position: "absolute",
     top: "10px",
@@ -32,7 +32,7 @@ export const outputCornerStyle: { [key: string]: CSSProperties } = {
   },
 };
 
-const buttonStyle: { [key: string]: CSSProperties } = {
+const buttonStyle: StyleType = {
   container: {
     position: "absolute",
     top: "10px",
@@ -50,7 +50,7 @@ const buttonStyle: { [key: string]: CSSProperties } = {
   },
 };
 
-const infoBoxStyle: { [key: string]: CSSProperties } = {
+const infoBoxStyle: StyleType = {
   container: {
     position: "absolute",
     marginBottom: "256px",
@@ -77,7 +77,7 @@ const infoBoxStyle: { [key: string]: CSSProperties } = {
   },
 };
 
-const mainStyle: { [key: string]: CSSProperties } = {
+const mainStyle: StyleType = {
   line: {
     marginTop: "2.4em",
     width: "28px",
