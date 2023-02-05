@@ -1,8 +1,8 @@
 import { useTheme } from "@mui/material";
 import { FC } from "react";
 
-import { appStyle } from "../../styles";
-import { calculateColorBrightness } from "../../utils/functions";
+import { appStyle } from "../../../styles";
+import { calculateColorBrightness } from "../../../utils/functions";
 
 const BootLine: FC<{}> = () => {
   const theme = useTheme();
