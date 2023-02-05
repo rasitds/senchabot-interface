@@ -20,6 +20,7 @@ import LineText from "./components/ui/LineText";
 import OutputCorner from "./components/ui/OutputCorner";
 import { IMainColor } from "./types";
 import { ConfigMenu } from "./components/ConfigMenu";
+import { ModeContext } from "./contexts/ModeContext";
 
 let muiTheme = createTheme({
   palette: {
@@ -50,6 +51,7 @@ function App() {
   const themeColors = theme.getColors();
 
   const [isLoading, setIsLoading] = useState(true);
+  const [mode, setMode] = useState<number>(0);
   const [isRunning, setIsRunning] = useState<boolean>(true);
 
   const [infoBox, setInfoBox] = useState<IInfoBox>({
@@ -61,6 +63,7 @@ function App() {
   const [doubleClick, setDoubleClick] = useState(false);
 
   const runContext = useMemo(() => ({ isRunning, setIsRunning }), [isRunning]);
+  const modeContext = useMemo(() => ({ mode, setMode }), [mode]);
   const infoBoxContext = useMemo(() => ({ infoBox, setInfoBox }), [infoBox]);
 
   useEffect(() => {
@@ -79,7 +82,7 @@ function App() {
 
   const handleDoubleClick = (e: any) => {
     setDoubleClick(true);
-    setIsRunning(false);
+    setMode(1);
   };
 
   return (
@@ -91,29 +94,31 @@ function App() {
             <BootLine />
           </div>
         ) : (
-          <RunContext.Provider value={runContext}>
-            <ResponseProvider>
-              <InfoBoxContext.Provider value={infoBoxContext}>
-                <OutputCorner />
-                {doubleClick && !isRunning ? (
-                  <ConfigMenu />
-                ) : (
-                  <>
-                    <div
-                      style={appStyle.body}
-                      onKeyDown={handleKeyDown}
-                      onDoubleClick={handleDoubleClick}
-                      tabIndex={-1}
-                    >
-                      <InfoBox />
-                      <LineText />
-                    </div>
-                    <InputManager isInputOpen={isInputOpen} />
-                  </>
-                )}
-              </InfoBoxContext.Provider>
-            </ResponseProvider>
-          </RunContext.Provider>
+          <ModeContext.Provider value={modeContext}>
+            <RunContext.Provider value={runContext}>
+              <ResponseProvider>
+                <InfoBoxContext.Provider value={infoBoxContext}>
+                  <OutputCorner />
+                  {doubleClick && mode === 1 ? (
+                    <ConfigMenu />
+                  ) : (
+                    <>
+                      <div
+                        style={appStyle.body}
+                        onKeyDown={handleKeyDown}
+                        onDoubleClick={handleDoubleClick}
+                        tabIndex={-1}
+                      >
+                        <InfoBox />
+                        <LineText />
+                      </div>
+                      <InputManager isInputOpen={isInputOpen} />
+                    </>
+                  )}
+                </InfoBoxContext.Provider>
+              </ResponseProvider>
+            </RunContext.Provider>
+          </ModeContext.Provider>
         )}
       </ThemeProvider>
     </>
