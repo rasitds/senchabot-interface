@@ -15,13 +15,14 @@ import { InfoBox } from "./components/ui/InfoBox";
 
 import { InputManager } from "./components/InputManager";
 
-import BootLine from "./components/ui/BootLine";
+import BootLine from "./components/ui/scenes/BootLine";
 import LineText from "./components/ui/LineText";
 import OutputCorner from "./components/ui/OutputCorner";
 import { IMainColor } from "./types";
 import { ConfigMenu } from "./components/ConfigMenu";
 import { ModeContext } from "./contexts/ModeContext";
 import { Mode } from "./enums";
+import { BootText } from "./components/ui/scenes/BootText";
 
 let muiTheme = createTheme({
   palette: {
@@ -91,7 +92,13 @@ function App() {
         <CssBaseline />
         {isLoading ? (
           <div style={appStyle.body}>
-            <BootLine />
+            <BootText
+              texts={[
+                "START MACHINE",
+                "LOAD THEME DATA",
+                "COLOR THEME: " + theme.themeName,
+              ]}
+            />
           </div>
         ) : (
           <ModeContext.Provider value={modeContext}>
