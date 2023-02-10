@@ -21,6 +21,7 @@ import OutputCorner from "./components/ui/OutputCorner";
 import { IMainColor } from "./types";
 import { ConfigMenu } from "./components/ConfigMenu";
 import { ModeContext } from "./contexts/ModeContext";
+import { Mode } from "./enums";
 
 let muiTheme = createTheme({
   palette: {
@@ -51,7 +52,7 @@ function App() {
   const themeColors = theme.getColors();
 
   const [isLoading, setIsLoading] = useState(true);
-  const [mode, setMode] = useState<number>(0);
+  const [mode, setMode] = useState<Mode>(Mode.MAIN);
   const [isRunning, setIsRunning] = useState<boolean>(true);
 
   const [infoBox, setInfoBox] = useState<IInfoBox>({
@@ -75,14 +76,13 @@ function App() {
   }, [themeColors]);
 
   const handleKeyDown = (e: any) => {
-    console.log("handleKeyDown e.code", e.code);
     if (e.code === "Escape") setIsInputOpen(true);
     if (e.altKey && e.code === "KeyI") setIsInputOpen((prev) => !prev);
   };
 
   const handleDoubleClick = (e: any) => {
     setDoubleClick(true);
-    setMode(1);
+    setMode(Mode.CONFIG);
   };
 
   return (
@@ -99,7 +99,7 @@ function App() {
               <ResponseProvider>
                 <InfoBoxContext.Provider value={infoBoxContext}>
                   <OutputCorner />
-                  {doubleClick && mode === 1 ? (
+                  {doubleClick && mode === Mode.CONFIG ? (
                     <ConfigMenu />
                   ) : (
                     <>

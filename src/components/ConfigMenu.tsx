@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { /*Link, */ useTheme } from "@mui/material";
 import { outputCornerStyle } from "../styles";
 import { ModeContext } from "../contexts/ModeContext";
+import { Mode } from "../enums";
 
 const CONFIG_MENU_TITLE = "CONFIGURATION MENU\n\n";
 
@@ -63,7 +64,7 @@ export const ConfigMenu = () => {
       case 2:
         setTexts("Exit Command Executed\n\n");
         const timeout = setTimeout(() => {
-          setMode(0);
+          setMode(Mode.MAIN);
           clearTimeout(timeout);
         }, 1000);
         break;

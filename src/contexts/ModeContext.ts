@@ -1,8 +1,9 @@
 import React, { createContext } from "react";
+import { Mode } from "../enums";
 
 type ModeContextType = {
-  mode: number;
-  setMode: React.Dispatch<React.SetStateAction<number>>;
+  mode: Mode;
+  setMode: React.Dispatch<React.SetStateAction<Mode>>;
 };
 
 const defaultProps = {
