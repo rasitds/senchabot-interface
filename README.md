@@ -10,6 +10,8 @@ Thanks to [Aaron Powell](https://disqus.com/by/Aaron_Powell/) and [Tzach Shabtay
 
 Thanks to [Victor Tomaili](https://github.com/VictorTomaili) for the code and UX contribution.
 
+Thanks to [Serkan E.](https://github.com/SrknEkz) for the UX contribution.
+
 ## License
 
 This project is licensed under the terms of the [MIT license](/LICENSE).
