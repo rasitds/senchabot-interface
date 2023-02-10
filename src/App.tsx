@@ -19,6 +19,9 @@ import BootLine from "./components/ui/BootLine";
 import LineText from "./components/ui/LineText";
 import OutputCorner from "./components/ui/OutputCorner";
 import { IMainColor } from "./types";
+import { ConfigMenu } from "./components/ConfigMenu";
+import { ModeContext } from "./contexts/ModeContext";
+import { Mode } from "./enums";
 
 let muiTheme = createTheme({
   palette: {
@@ -49,6 +52,7 @@ function App() {
   const themeColors = theme.getColors();
 
   const [isLoading, setIsLoading] = useState(true);
+  const [mode, setMode] = useState<Mode>(Mode.MAIN);
   const [isRunning, setIsRunning] = useState<boolean>(true);
 
   const [infoBox, setInfoBox] = useState<IInfoBox>({
@@ -60,6 +64,7 @@ function App() {
   const [doubleClick, setDoubleClick] = useState(false);
 
   const runContext = useMemo(() => ({ isRunning, setIsRunning }), [isRunning]);
+  const modeContext = useMemo(() => ({ mode, setMode }), [mode]);
   const infoBoxContext = useMemo(() => ({ infoBox, setInfoBox }), [infoBox]);
 
   useEffect(() => {
@@ -71,13 +76,13 @@ function App() {
   }, [themeColors]);
 
   const handleKeyDown = (e: any) => {
-    console.log("handleKeyDown e.code", e.code);
     if (e.code === "Escape") setIsInputOpen(true);
     if (e.altKey && e.code === "KeyI") setIsInputOpen((prev) => !prev);
   };
 
   const handleDoubleClick = (e: any) => {
     setDoubleClick(true);
+    setMode(Mode.CONFIG);
   };
 
   return (
@@ -89,41 +94,31 @@ function App() {
             <BootLine />
           </div>
         ) : (
-          <RunContext.Provider value={runContext}>
-            <ResponseProvider>
-              <InfoBoxContext.Provider value={infoBoxContext}>
-                <OutputCorner />
-                {doubleClick && (
-                  <div style={buttonStyle.container}>
-                    <div
-                      style={{
-                        ...buttonStyle.buttonBox,
-                        color: themeColors.background,
-                        backgroundColor: themeColors.foreground,
-                        border: `1px double ${themeColors.foreground}`,
-                        borderStyle: "solid",
-                        boxShadow: `2px 2px ${themeColors.foreground}`,
-                        fontWeight: "bold",
-                        fontFamily: "ald",
-                      }}
-                    >
-                      doubleClick
-                    </div>
-                  </div>
-                )}
-                <div
-                  style={appStyle.body}
-                  onKeyDown={handleKeyDown}
-                  onDoubleClick={handleDoubleClick}
-                  tabIndex={-1}
-                >
-                  <InfoBox />
-                  <LineText />
-                </div>
-                <InputManager isInputOpen={isInputOpen} />
-              </InfoBoxContext.Provider>
-            </ResponseProvider>
-          </RunContext.Provider>
+          <ModeContext.Provider value={modeContext}>
+            <RunContext.Provider value={runContext}>
+              <ResponseProvider>
+                <InfoBoxContext.Provider value={infoBoxContext}>
+                  <OutputCorner />
+                  {doubleClick && mode === Mode.CONFIG ? (
+                    <ConfigMenu />
+                  ) : (
+                    <>
+                      <div
+                        style={appStyle.body}
+                        onKeyDown={handleKeyDown}
+                        onDoubleClick={handleDoubleClick}
+                        tabIndex={-1}
+                      >
+                        <InfoBox />
+                        <LineText />
+                      </div>
+                      <InputManager isInputOpen={isInputOpen} />
+                    </>
+                  )}
+                </InfoBoxContext.Provider>
+              </ResponseProvider>
+            </RunContext.Provider>
+          </ModeContext.Provider>
         )}
       </ThemeProvider>
     </>
