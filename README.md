@@ -1,6 +1,6 @@
-# Sencha Web UI
+# Sencha Web App
 
-Open-Source Web UI for AI / Assistant
+Open-Source Web UI App for AI / Assistant
 
 **Current Stage: `pre-alpha`**
 
