@@ -1,5 +1,5 @@
 import "./App.css";
-import { appStyle, buttonStyle } from "./styles";
+import { appStyle } from "./styles";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import { Theme } from "./utils/theme.class";
@@ -15,7 +15,6 @@ import { InfoBox } from "./components/ui/InfoBox";
 
 import { InputManager } from "./components/InputManager";
 
-import BootLine from "./components/ui/scenes/BootLine";
 import LineText from "./components/ui/LineText";
 import OutputCorner from "./components/ui/OutputCorner";
 import { IMainColor } from "./types";
