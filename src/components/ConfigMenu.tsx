@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { /*Link, */ useTheme } from "@mui/material";
 import { outputCornerStyle } from "../styles";
-import { ModeContext } from "../contexts/ModeContext";
+import { useModeContext } from "../contexts/ModeContext";
 import { Mode } from "../enums";
 
 const CONFIG_MENU_TITLE = "CONFIGURATION MENU\n\n";
@@ -21,7 +21,7 @@ export const ConfigMenu = () => {
   const theme = useTheme();
   const background = theme.palette.background.default;
 
-  const { mode, setMode } = useContext(ModeContext);
+  const { mode, setMode } = useModeContext();
 
   const [texts, setTexts] = useState(CONFIG_MENU_TITLE);
   const [button, setButton] = useState(0);
