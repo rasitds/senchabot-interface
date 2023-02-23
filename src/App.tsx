@@ -5,7 +5,7 @@ import {CssBaseline} from "@mui/material";
 import {Theme} from "./utils/theme.class";
 import {useEffect, useMemo, useState} from "react";
 import {RunContext} from "./contexts/RunContext";
-import {IInfoBox, InfoBoxContext} from "./contexts/InfoBoxContext";
+import {InfoBoxContextProvider} from "./contexts/InfoBoxContext";
 import {ResponseProvider} from "./contexts/ResponseContext";
 import {useResponseContext} from "./contexts/ResponseContext";
 import OutputCorner from "./components/ui/OutputCorner";
@@ -43,12 +43,8 @@ function App() {
     const themeColors = theme.getColors();
     const [isLoading, setIsLoading] = useState(true);
     const [isRunning, setIsRunning] = useState<boolean>(true);
-    const [infoBox, setInfoBox] = useState<IInfoBox>({
-        infoBoxType: 0,
-        infoBoxText: "",
-    });
     const runContext = useMemo(() => ({isRunning, setIsRunning}), [isRunning]);
-    const infoBoxContext = useMemo(() => ({infoBox, setInfoBox}), [infoBox]);
+
 
     useEffect(() => {
         updateColors(themeColors);
@@ -77,10 +73,10 @@ function App() {
                     <ModeContextProvider>
                         <RunContext.Provider value={runContext}>
                             <ResponseProvider>
-                                <InfoBoxContext.Provider value={infoBoxContext}>
+                                <InfoBoxContextProvider>
                                     <OutputCorner/>
                                     <Main/>
-                                </InfoBoxContext.Provider>
+                                </InfoBoxContextProvider>
                             </ResponseProvider>
                         </RunContext.Provider>
                     </ModeContextProvider>
