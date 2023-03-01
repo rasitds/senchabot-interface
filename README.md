@@ -4,6 +4,11 @@ Open-Source Web UI App for AI / Assistant
 
 **Current Stage: `pre-alpha`**
 
+## Sencha uses
+
+- [React](https://reactjs.org/)
+- [Material UI](https://mui.com)
+
 ## Credits
 
 Thanks to [Aaron Powell](https://disqus.com/by/Aaron_Powell/) and [Tzach Shabtay](https://disqus.com/by/tzachshabtay/) for the [useRecursiveTimeout](https://www.aaron-powell.com/posts/2019-09-23-recursive-settimeout-with-react-hooks/) hook.
