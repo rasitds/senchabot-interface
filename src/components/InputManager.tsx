@@ -74,6 +74,11 @@ export const InputManager = ({ isInputOpen }: { isInputOpen: boolean }) => {
         outputText: outputText,
       });
     }
+    
+    setResponseState({
+      lineText: "Please start command with /" + lineText.toUpperCase(),
+      outputText: outputText,
+    });
   };
 
   const commandContextValue = useMemo(() => ({ runCommand }), []);
