@@ -67,12 +67,13 @@ export const InputManager = ({ isInputOpen }: { isInputOpen: boolean }) => {
         lineText: "Command not found." + lineText.toUpperCase(),
         outputText: outputText,
       });
+    } else {
+      
+      setResponseState({
+        lineText: "Please start command with /" + lineText.toUpperCase(),
+        outputText: outputText,
+      });
     }
-    
-    setResponseState({
-      lineText: "Please start command with /" + lineText.toUpperCase(),
-      outputText: outputText,
-    });
   };
 
   const commandContextValue = useMemo(() => ({ runCommand }), []);
