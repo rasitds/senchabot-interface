@@ -11,7 +11,7 @@ const appStyle: StyleType = {
   },
 };
 
-export const outputCornerStyle: StyleType = {
+const outputCornerStyle: StyleType = {
   container: {
     position: 'absolute',
     top: '10px',
@@ -20,6 +20,27 @@ export const outputCornerStyle: StyleType = {
     bottom: '10px',
     overflowWrap: 'break-word',
     userSelect: 'none',
+  },
+  text: {
+    fontFamily: 'Source Code Pro',
+    fontSize: '16px',
+    whiteSpace: 'pre-line',
+    transition: 'background 500ms linear',
+    color: 'white',
+  },
+};
+
+const configMenuStyle: StyleType = {
+  container: {
+    position: 'absolute',
+    top: '10px',
+    left: '10px',
+    right: '10px',
+    bottom: '10px',
+    overflowWrap: 'break-word',
+    userSelect: 'none',
+    backgroundColor: '#000',
+    padding: '16px',
   },
   text: {
     fontFamily: 'Source Code Pro',
@@ -182,6 +203,8 @@ export {
   buttonStyle,
   infoBoxStyle,
   terminalStyle,
+  outputCornerStyle,
+  configMenuStyle,
   bootLineStyle,
   textLineStyle,
   textWordStyle,

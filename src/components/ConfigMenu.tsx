@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { outputCornerStyle } from '../styles';
+import { configMenuStyle } from '../styles';
 import { useModeContext } from '../contexts/ModeContext';
 import { Mode } from '../enums';
 
@@ -75,8 +75,8 @@ export const ConfigMenu = () => {
     handleMenuButton(buttonIndex);
 
   return (
-    <div style={outputCornerStyle.container}>
-      <div style={outputCornerStyle.text}>
+    <div style={configMenuStyle.container}>
+      <div style={configMenuStyle.text}>
         {texts}
         <div style={{ maxWidth: '800px' }}>
           {menuArray.map((menu, index) => (
@@ -86,8 +86,8 @@ export const ConfigMenu = () => {
               onMouseEnter={() => handleMouseHover(index)}
               onMouseDown={() => handleMouseDown(index)}
               style={{
-                ...outputCornerStyle.button,
-                ...(button === index && outputCornerStyle.buttonHover),
+                ...configMenuStyle.button,
+                ...(button === index && configMenuStyle.buttonHover),
               }}>
               {menu}
             </div>
