@@ -18,7 +18,11 @@ export class FullscreenCommand implements ICommand {
   public execute(parameters: string): void {
     var elem = document.documentElement;
     if (document.fullscreenElement) {
-      if (document.exitFullscreen) document.exitFullscreen();
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+        this.setResponseState("Fullscreen Mode Deactivated.");
+        return;
+      }
     } else {
       if (document.fullscreenEnabled && elem.requestFullscreen)
         elem.requestFullscreen();

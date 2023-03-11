@@ -19,6 +19,12 @@ Thanks to [Bahadir Arabaci](https://github.com/arabacibahadir) for the code cont
 
 Thanks to [Serkan E.](https://github.com/SrknEkz) for the UX contribution.
 
+Thanks to [Sevilay Erkan](https://github.com/sevilayerkan) for the code contribution.
+
+Thanks to [Umut Sirin](https://github.com/usirin) for the code and UX contribution.
+
+Thanks to [Emre Ergül](https://github.com/emredevsalot) for the code and UX contribution.
+
 ## License
 
 This project is licensed under the terms of the [MIT license](/LICENSE).

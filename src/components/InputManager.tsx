@@ -65,12 +65,13 @@ export const InputManager = ({ isInputOpen }: { isInputOpen: boolean }) => {
       }
 
       setResponseState({
-        lineText: 'Command not found.' + lineText.toUpperCase(),
+        lineText: "Command not found." + lineText.toUpperCase(),
         outputText: outputText,
       });
     } else {
+      
       setResponseState({
-        lineText: 'Please start command with /' + lineText.toUpperCase(),
+        lineText: "Please start command with /" + lineText.toUpperCase(),
         outputText: outputText,
       });
     }
