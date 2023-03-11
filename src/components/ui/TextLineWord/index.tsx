@@ -8,9 +8,9 @@ import { useRecursiveTimeout } from '../../../utils/hooks';
 import { AnyContextType } from '../../../types';
 
 import Line from './Line';
-import Text from './Text';
+import Word from './Word';
 
-const LineText = () => {
+const TextLineWord = () => {
   const { isRunning, setIsRunning } = useContext(RunContext);
   const responseContext: AnyContextType = useResponseContext();
 
@@ -53,12 +53,13 @@ const LineText = () => {
     0,
   );
 
+  const calculatedLineSize = wordWidth ? wordWidth * 3 + 10 : 28;
   return (
     <>
-      <Text word={word} />
-      <Line textWord={word} lineSize={wordWidth ? wordWidth * 3 + 10 : 28} />
+      <Word textWord={word} />
+      <Line textWord={word} lineSize={calculatedLineSize} />
     </>
   );
 };
 
-export default LineText;
+export default TextLineWord;

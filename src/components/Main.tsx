@@ -2,7 +2,7 @@ import { Mode } from '../enums';
 import { ConfigMenu } from './ConfigMenu';
 import { appStyle } from '../styles';
 import { InfoBox } from './ui/InfoBox';
-import LineText from './ui/LineText';
+import TextLineWord from './ui/TextLineWord';
 import { InputManager } from './InputManager';
 import { useState } from 'react';
 import { useModeContext } from '../contexts/ModeContext';
@@ -34,7 +34,7 @@ const Main = () => {
             onDoubleClick={handleDoubleClick}
             tabIndex={-1}>
             <InfoBox />
-            <LineText />
+            <TextLineWord />
           </div>
           <InputManager isInputOpen={isInputOpen} />
         </>

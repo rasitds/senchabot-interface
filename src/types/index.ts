@@ -28,7 +28,7 @@ export interface ITextLineProps {
 }
 
 export interface ITextWordProps {
-  word: string;
+  textWord: string;
 }
 
 type ReactChildrenPropsType = {
