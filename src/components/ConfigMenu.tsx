@@ -1,5 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
-import { /*Link, */ useTheme } from '@mui/material';
+import { useState, useEffect } from 'react';
 import { outputCornerStyle } from '../styles';
 import { useModeContext } from '../contexts/ModeContext';
 import { Mode } from '../enums';
@@ -18,9 +17,6 @@ const menuArray = [
 ];
 
 export const ConfigMenu = () => {
-  const theme = useTheme();
-  const background = theme.palette.background.default;
-
   const { mode, setMode } = useModeContext();
 
   const [texts, setTexts] = useState(CONFIG_MENU_TITLE);
@@ -80,33 +76,19 @@ export const ConfigMenu = () => {
 
   return (
     <div style={outputCornerStyle.container}>
-      <div
-        style={{
-          ...outputCornerStyle.text,
-          color: 'white',
-        }}
-      >
+      <div style={outputCornerStyle.text}>
         {texts}
         <div style={{ maxWidth: '800px' }}>
           {menuArray.map((menu, index) => (
             <div
+              className="configMenu"
               key={index}
               onMouseEnter={() => handleMouseHover(index)}
               onMouseDown={() => handleMouseDown(index)}
               style={{
                 ...outputCornerStyle.button,
-                marginBottom: '6px',
-                padding: '4px 8px',
-                borderStyle: 'solid',
-                borderColor: background,
-                color: 'white',
-                ...(button === index && {
-                  backgroundColor: 'white',
-                  color: 'black',
-                  borderColor: 'white',
-                }),
-              }}
-            >
+                ...(button === index && outputCornerStyle.buttonHover),
+              }}>
               {menu}
             </div>
           ))}

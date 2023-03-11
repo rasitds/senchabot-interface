@@ -10,16 +10,27 @@
 .bootLineAnimation {
   -webkit-animation: changeWidth 1500ms alternate ease-in-out;
   animation: changeWidth 1500ms alternate ease-in-out;
+  position: fixed;
+  height: 100%;
+  margin-bottom: 16px;
 }
 
 @-webkit-keyframes lineBlink {
-  from {opacity: 0;}
-  to {opacity: 1;}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes lineBlink {
-  from {opacity: 0;}
-  to {opacity: 1;}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .lineAnimation {
@@ -42,6 +53,28 @@
   animation: inputVisibilityB 0.8s infinite alternate;
   transition: border-color 0.1s, color 0.1s, text-shadow 0.1s, transform 0.3s;
   /*transition: border-color 0.1s, color 0.1s, text-shadow 0.1s, transform 0.1s 0.5s;*/
+
+  position: absolute;
+  bottom: 32px;
+  width: 240px;
+  height: 32px;
+  padding: 0 8px;
+  background: transparent;
+  outline: none;
+  font-weight: 320;
+}
+
+.configMenu {
+  margin-bottom: 6px;
+  padding: 4px 8px;
+  border-style: solid;
+  border-color: background;
+  color: white;
+}
+
+.angleUpContainer {
+  position: absolute;
+  transition: height 0.3s ease-in-out, bottom 0.3s ease-in-out;
 }
 
 :focus::placeholder {

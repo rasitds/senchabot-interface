@@ -1,26 +1,17 @@
-import { useTheme } from "@mui/material";
-import { FC } from "react";
+import { useTheme } from '@mui/material';
+import { FC } from 'react';
 
-import { mainStyle } from "../../../styles";
+import { textLineStyle } from '../../../styles';
+import { ITextLineProps } from '../../../types';
 
-interface Props {
-  textWord: string;
-  lineSize: number;
-}
-
-const Line: FC<Props> = (props) => {
+const Line: FC<ITextLineProps> = props => {
   const theme = useTheme();
-  mainStyle.line.width = props.lineSize;
+  const primaryMainColor = theme.palette.primary.main;
 
   return (
     <div
-      className={`${props.textWord ? "" : "lineAnimation"}`}
-      style={{
-        ...mainStyle.line,
-        color: theme.palette.primary.main,
-        borderTop: `3.2px solid ${theme.palette.primary.main}`,
-        transitionDuration: props.textWord ? "0.1s" : "200ms",
-      }}
+      className={`${props.textWord ? '' : 'lineAnimation'}`}
+      style={textLineStyle(primaryMainColor, props)}
     />
   );
 };

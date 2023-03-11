@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
-import { outputCornerStyle } from "../../../styles";
-import { useRecursiveTimeout } from "../../../utils/hooks";
+import { useEffect, useState } from 'react';
+import { outputCornerStyle } from '../../../styles';
+import { useRecursiveTimeout } from '../../../utils/hooks';
+import Body from '../Body';
 
 export const BootText = ({ texts }: { texts: string[] }) => {
   const [displayStatus, setDisplayStatus] = useState(true);
@@ -9,18 +10,15 @@ export const BootText = ({ texts }: { texts: string[] }) => {
 
   useRecursiveTimeout(
     () =>
-      new Promise<void>((r) => {
+      new Promise<void>(r => {
         if (textIndex <= texts.length && texts[textIndex]) {
-          setOutputText((outputText) => [
-            ...outputText,
-            texts[textIndex] + "\n",
-          ]);
+          setOutputText(outputText => [...outputText, texts[textIndex] + '\n']);
           setTextIndex(textIndex + 1);
         }
         r();
       }),
     Math.floor(Math.random() * 500),
-    0
+    0,
   );
 
   useEffect(() => {
@@ -33,11 +31,11 @@ export const BootText = ({ texts }: { texts: string[] }) => {
   }, [texts.length]);
 
   return displayStatus ? (
-    <div style={outputCornerStyle.container}>
-      <div style={{ ...outputCornerStyle.text, color: "#fff" }}>
-        {outputText}
+    <Body>
+      <div style={outputCornerStyle.container}>
+        <div style={outputCornerStyle.text}>{outputText}</div>
       </div>
-    </div>
+    </Body>
   ) : (
     <></>
   );

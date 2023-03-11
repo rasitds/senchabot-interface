@@ -1,19 +1,14 @@
-import { useTheme } from "@mui/material";
-import { FC } from "react";
+import { useTheme } from '@mui/material';
+import { FC } from 'react';
 
-import { mainStyle } from "../../../styles";
+import { textWordStyle } from '../../../styles';
+import { ITextWordProps } from '../../../types';
 
-interface Props {
-  word: string;
-}
-
-const Text: FC<Props> = (props) => {
+const Text: FC<ITextWordProps> = props => {
   const theme = useTheme();
-  return (
-    <div style={{ ...mainStyle.text, color: theme.palette.primary.main }}>
-      {props.word}
-    </div>
-  );
+  const primaryMainColor = theme.palette.primary.main;
+
+  return <div style={textWordStyle(primaryMainColor)}>{props.word}</div>;
 };
 
 export default Text;

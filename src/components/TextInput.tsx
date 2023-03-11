@@ -1,9 +1,10 @@
-import { useTheme } from "@mui/material";
-import { useContext } from "react";
-import { CommandContext } from "../contexts/CommandContext";
-import { InputContext } from "../contexts/InputContext";
-import { RunContext } from "../contexts/RunContext";
-import { AnyContextType } from "../types";
+import { useTheme } from '@mui/material';
+import { useContext } from 'react';
+import { CommandContext } from '../contexts/CommandContext';
+import { InputContext } from '../contexts/InputContext';
+import { RunContext } from '../contexts/RunContext';
+import { inputStyle } from '../styles';
+import { AnyContextType } from '../types';
 
 const TextInput = () => {
   const theme = useTheme();
@@ -21,11 +22,11 @@ const TextInput = () => {
   };
 
   const handleKeyDown = (e: any) => {
-    if (e.code === "Escape")
-      setInputState({ inputEnabled: true, inputValue: "" });
-    if (e.key === "Enter") {
+    if (e.code === 'Escape')
+      setInputState({ inputEnabled: true, inputValue: '' });
+    if (e.key === 'Enter') {
       runCommand(e.target.value);
-      setInputState({ inputEnabled: false, inputValue: "" });
+      setInputState({ inputEnabled: false, inputValue: '' });
       setIsRunning(true);
     }
   };
@@ -34,19 +35,7 @@ const TextInput = () => {
     <input
       type="text"
       className="input"
-      style={{
-        position: "absolute",
-        bottom: "32px",
-        width: "240px",
-        height: "32px",
-        padding: "0 8px",
-        background: "transparent",
-        outline: "none",
-        fontWeight: "320",
-        border: `2px solid ${foreground}`,
-        caretColor: foreground,
-        color: foreground,
-      }}
+      style={inputStyle(foreground)}
       value={inputState.inputValue}
       onChange={handleInputChange}
       onKeyDown={handleKeyDown}

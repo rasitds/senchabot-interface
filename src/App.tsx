@@ -13,6 +13,7 @@ import { IMainColor } from './types';
 import { ModeContextProvider } from './contexts/ModeContext';
 import { BootText } from './components/ui/scenes/BootText';
 import Main from './components/Main';
+import { bootTexts } from './utils/boottexts';
 
 let muiTheme = createTheme({
   palette: {
@@ -44,6 +45,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isRunning, setIsRunning] = useState<boolean>(true);
   const runContext = useMemo(() => ({ isRunning, setIsRunning }), [isRunning]);
+
   useEffect(() => {
     updateColors(themeColors);
 
@@ -51,20 +53,13 @@ function App() {
       setIsLoading(false);
     }, 1500);
   }, [themeColors]);
+
   return (
     <>
       <ThemeProvider theme={muiTheme}>
         <CssBaseline />
         {isLoading ? (
-          <div style={appStyle.body}>
-            <BootText
-              texts={[
-                'START MACHINE',
-                'LOAD THEME DATA',
-                'COLOR THEME: ' + theme.themeName,
-              ]}
-            />
-          </div>
+          <BootText texts={bootTexts(theme.themeName)} />
         ) : (
           <ModeContextProvider>
             <RunContext.Provider value={runContext}>

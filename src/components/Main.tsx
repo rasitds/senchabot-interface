@@ -11,14 +11,17 @@ const Main = () => {
   const [doubleClick, setDoubleClick] = useState(false);
   const [isInputOpen, setIsInputOpen] = useState(true);
   const { mode, setMode } = useModeContext();
+
   const handleKeyDown = (e: any) => {
     if (e.code === 'Escape') setIsInputOpen(true);
     if (e.altKey && e.code === 'KeyI') setIsInputOpen(prev => !prev);
   };
+
   const handleDoubleClick = (e: any) => {
     setDoubleClick(true);
     setMode(Mode.CONFIG);
   };
+
   return (
     <>
       {doubleClick && mode === Mode.CONFIG ? (
@@ -29,8 +32,7 @@ const Main = () => {
             style={appStyle.body}
             onKeyDown={handleKeyDown}
             onDoubleClick={handleDoubleClick}
-            tabIndex={-1}
-          >
+            tabIndex={-1}>
             <InfoBox />
             <LineText />
           </div>
