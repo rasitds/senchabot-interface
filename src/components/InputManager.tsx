@@ -69,7 +69,6 @@ export const InputManager = ({ isInputOpen }: { isInputOpen: boolean }) => {
         outputText: outputText,
       });
     } else {
-      
       setResponseState({
         lineText: "Please start command with /" + lineText.toUpperCase(),
         outputText: outputText,

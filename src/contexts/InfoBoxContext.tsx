@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useMemo, useState } from 'react';
-import { ReactChildrenPropsType } from '../types';
+import React, { createContext, useContext, useMemo, useState } from "react";
+import { ReactChildrenPropsType } from "../types";
 
 export interface IInfoBox {
   infoBoxType: number;
@@ -14,7 +14,7 @@ type InfoBoxContextType = {
 const defaultProps = {
   infoBox: {
     infoBoxType: 0,
-    infoBoxText: '',
+    infoBoxText: "",
   },
   setInfoBox: () => {},
 };
@@ -33,7 +33,7 @@ function useInfoBoxContext() {
   const context = useContext(InfoBoxContext);
   if (context === undefined) {
     throw new Error(
-      'useInfoBoxContext must be used within a InfoBoxContext.Provider',
+      "useInfoBoxContext must be used within a InfoBoxContext.Provider",
     );
   }
   return context;

@@ -17,7 +17,7 @@ export class CommandRegistry {
 
   public getCommand(name: string): ICommand | undefined {
     return this._Commands.find(
-      (c) => c.name === name || c.aliases?.includes(name)
+      c => c.name === name || c.aliases?.includes(name),
     );
   }
 

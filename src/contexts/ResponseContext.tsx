@@ -1,7 +1,7 @@
-import { createContext, useMemo, useState, useContext } from 'react';
-import { ReactChildrenPropsType } from '../types';
+import { createContext, useMemo, useState, useContext } from "react";
+import { ReactChildrenPropsType } from "../types";
 
-const sentences = ['WHAT ARE YOUR COMMANDS?', 'WHAT IS YOUR COMMAND?'];
+const sentences = ["WHAT ARE YOUR COMMANDS?", "WHAT IS YOUR COMMAND?"];
 const randomNum: any = Math.random().toFixed(0);
 const randomTxt: string = sentences[randomNum];
 
@@ -12,7 +12,7 @@ interface IResponseContext {
 
 const defaultValue = {
   lineText: randomTxt,
-  outputText: ['/'],
+  outputText: ["/"],
 };
 
 const ResponseContext = createContext({});
@@ -37,7 +37,7 @@ function useResponseContext() {
   const context = useContext(ResponseContext);
   if (context === undefined) {
     throw new Error(
-      'useResponseContext must be used within a ResponseProvider',
+      "useResponseContext must be used within a ResponseProvider",
     );
   }
   return context;

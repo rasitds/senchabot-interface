@@ -7,7 +7,7 @@ import { useEffect, useRef } from "react";
 export function useRecursiveTimeout<t>(
   callback: (() => Promise<t>) | (() => void),
   delay: number | null,
-  pollId: number
+  pollId: number,
 ) {
   const savedCallback = useRef(callback);
   const savedDelay = useRef(delay);

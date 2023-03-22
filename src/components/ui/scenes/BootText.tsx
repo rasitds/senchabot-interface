@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { outputCornerStyle } from '../../../styles';
-import { useRecursiveTimeout } from '../../../utils/hooks';
-import Body from '../Body';
+import { useEffect, useState } from "react";
+import { outputCornerStyle } from "../../../styles";
+import { useRecursiveTimeout } from "../../../utils/hooks";
+import Body from "../Body";
 
 export const BootText = ({ texts }: { texts: string[] }) => {
   const [displayStatus, setDisplayStatus] = useState(true);
@@ -12,7 +12,7 @@ export const BootText = ({ texts }: { texts: string[] }) => {
     () =>
       new Promise<void>(r => {
         if (textIndex <= texts.length && texts[textIndex]) {
-          setOutputText(outputText => [...outputText, texts[textIndex] + '\n']);
+          setOutputText(outputText => [...outputText, texts[textIndex] + "\n"]);
           setTextIndex(textIndex + 1);
         }
         r();

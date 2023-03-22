@@ -13,8 +13,8 @@ const Main = () => {
   const { mode, setMode } = useModeContext();
 
   const handleKeyDown = (e: any) => {
-    if (e.code === 'Escape') setIsInputOpen(true);
-    if (e.altKey && e.code === 'KeyI') setIsInputOpen(prev => !prev);
+    if (e.code === "Escape") setIsInputOpen(true);
+    if (e.altKey && e.code === "KeyI") setIsInputOpen(prev => !prev);
   };
 
   const handleDoubleClick = (e: any) => {

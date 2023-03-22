@@ -21,7 +21,7 @@ export class CmdListCommand implements ICommand {
 
     let commandList: string[] = [];
 
-    commands.filter((r) => commandList.push(r.usage || ""));
+    commands.filter(r => commandList.push(r.usage || ""));
 
     console.log("commandList", commandList);
 

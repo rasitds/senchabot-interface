@@ -58,7 +58,7 @@ export class Theme extends Config {
     };
 
     fetch(HOST + "api/themes", requestOptions)
-      .then(async (response) => {
+      .then(async response => {
         const isJSON = response.headers
           .get("content-type")
           ?.includes("application/json");
@@ -71,7 +71,7 @@ export class Theme extends Config {
 
         console.log(data.message);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error("There is an error!", error);
       });
 
@@ -81,7 +81,7 @@ export class Theme extends Config {
 
   private refreshTheme() {
     fetch(HOST + "api/themes/" + this.themeName)
-      .then(async (response) => {
+      .then(async response => {
         if (!response.ok) return Promise.reject(response.status);
         else {
           const responseData = await response.json();
@@ -113,11 +113,11 @@ export class Theme extends Config {
           super.setConfig("themeColors", JSON.stringify(this._themeData));
         }
       })
-      .catch((error) =>
+      .catch(error =>
         this.setResponseState({
           lineText: "Network Error",
           outputText: ["Connecting to the server...", "Status Check", error],
-        })
+        }),
       );
   }
 }

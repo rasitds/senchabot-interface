@@ -1,27 +1,27 @@
-import './App.css';
-import { appStyle } from './styles';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { CssBaseline } from '@mui/material';
-import { Theme } from './utils/theme.class';
-import { useEffect, useMemo, useState } from 'react';
-import { RunContext } from './contexts/RunContext';
-import { InfoBoxContextProvider } from './contexts/InfoBoxContext';
-import { ResponseProvider } from './contexts/ResponseContext';
-import { useResponseContext } from './contexts/ResponseContext';
-import OutputCorner from './components/ui/OutputCorner';
-import { IMainColor } from './types';
-import { ModeContextProvider } from './contexts/ModeContext';
-import { BootText } from './components/ui/scenes/BootText';
-import Main from './components/Main';
-import { bootTexts } from './utils/boottexts';
+import "./App.css";
+import { appStyle } from "./styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { CssBaseline } from "@mui/material";
+import { Theme } from "./utils/theme.class";
+import { useEffect, useMemo, useState } from "react";
+import { RunContext } from "./contexts/RunContext";
+import { InfoBoxContextProvider } from "./contexts/InfoBoxContext";
+import { ResponseProvider } from "./contexts/ResponseContext";
+import { useResponseContext } from "./contexts/ResponseContext";
+import OutputCorner from "./components/ui/OutputCorner";
+import { IMainColor } from "./types";
+import { ModeContextProvider } from "./contexts/ModeContext";
+import { BootText } from "./components/ui/scenes/BootText";
+import Main from "./components/Main";
+import { bootTexts } from "./utils/boottexts";
 
 let muiTheme = createTheme({
   palette: {
     primary: {
-      main: '#FFF',
+      main: "#FFF",
     },
     background: {
-      default: '#000',
+      default: "#000",
     },
   },
 });
@@ -30,10 +30,10 @@ const updateColors = (data: IMainColor) => {
   muiTheme = createTheme({
     palette: {
       primary: {
-        main: data.foreground ?? '#FFF',
+        main: data.foreground ?? "#FFF",
       },
       background: {
-        default: data.background ?? '#000',
+        default: data.background ?? "#000",
       },
     },
   });
