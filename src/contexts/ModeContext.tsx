@@ -5,8 +5,8 @@ import React, {
   ReactPortal,
   useMemo,
   useState,
-} from 'react';
-import { Mode } from '../enums';
+} from "react";
+import { Mode } from "../enums";
 
 type ModeContextType = {
   mode: Mode;
@@ -36,7 +36,7 @@ function ModeContextProvider(Props: {
 function useModeContext() {
   const context = React.useContext(ModeContext);
   if (context === undefined) {
-    throw new Error('useModeContext must be used within a ModeContextProvider');
+    throw new Error("useModeContext must be used within a ModeContextProvider");
   }
   return context;
 }

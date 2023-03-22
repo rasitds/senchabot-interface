@@ -38,7 +38,7 @@ const LineText = () => {
 
   useRecursiveTimeout(
     () =>
-      new Promise<void>((r) => {
+      new Promise<void>(r => {
         if (wordIndex <= words.length) {
           if (wordIndex === 0 || wordIndex === words.length - 1)
             setWordTimeout(1000);
@@ -50,7 +50,7 @@ const LineText = () => {
         r();
       }),
     wordTimeout,
-    0
+    0,
   );
 
   return (

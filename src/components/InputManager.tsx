@@ -43,7 +43,7 @@ export const InputManager = ({ isInputOpen }: { isInputOpen: boolean }) => {
       inputState,
       setInputState,
     }),
-    [inputState]
+    [inputState],
   );
 
   const runCommand = (cmdString: string) => {
@@ -68,7 +68,6 @@ export const InputManager = ({ isInputOpen }: { isInputOpen: boolean }) => {
         outputText: outputText,
       });
     } else {
-      
       setResponseState({
         lineText: "Please start command with /" + lineText.toUpperCase(),
         outputText: outputText,
@@ -95,8 +94,7 @@ export const InputManager = ({ isInputOpen }: { isInputOpen: boolean }) => {
                   inputEnabled: !inputState.inputEnabled,
                   inputValue: "",
                 });
-              }}
-            >
+              }}>
               <AngleUp foregroundColor={theme.palette.primary.main} />
             </div>
             {true ? <TextInput /> : <TerminalInput />}
