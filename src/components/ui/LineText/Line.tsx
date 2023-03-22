@@ -8,7 +8,7 @@ interface Props {
   lineSize: number;
 }
 
-const Line: FC<Props> = (props) => {
+const Line: FC<Props> = props => {
   const theme = useTheme();
   mainStyle.line.width = props.lineSize;
 

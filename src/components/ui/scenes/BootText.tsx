@@ -9,18 +9,15 @@ export const BootText = ({ texts }: { texts: string[] }) => {
 
   useRecursiveTimeout(
     () =>
-      new Promise<void>((r) => {
+      new Promise<void>(r => {
         if (textIndex <= texts.length && texts[textIndex]) {
-          setOutputText((outputText) => [
-            ...outputText,
-            texts[textIndex] + "\n",
-          ]);
+          setOutputText(outputText => [...outputText, texts[textIndex] + "\n"]);
           setTextIndex(textIndex + 1);
         }
         r();
       }),
     Math.floor(Math.random() * 500),
-    0
+    0,
   );
 
   useEffect(() => {

@@ -36,7 +36,7 @@ function ResponseProvider(Props: {
 
   const responseContext = useMemo(
     () => ({ responseState, setResponseState }),
-    [responseState]
+    [responseState],
   );
 
   return (
@@ -50,7 +50,7 @@ function useResponseContext() {
   const context = useContext(ResponseContext);
   if (context === undefined) {
     throw new Error(
-      "useResponseContext must be used within a ResponseProvider"
+      "useResponseContext must be used within a ResponseProvider",
     );
   }
   return context;

@@ -27,7 +27,7 @@ export class PrintCommand implements ICommand {
     if (!this.params?.includes(type))
       return this.setResponseState(
         "PARAMETER ERROR",
-        this.InvalidParameterMessage
+        this.InvalidParameterMessage,
       );
 
     var booleanType: boolean = type === "/" ? false : true;
