@@ -1,19 +1,19 @@
-import { Mode } from '../enums';
-import { ConfigMenu } from './ConfigMenu';
-import { appStyle } from '../styles';
-import { InfoBox } from './ui/InfoBox';
-import LineText from './ui/LineText';
-import { InputManager } from './InputManager';
-import { useState } from 'react';
-import { useModeContext } from '../contexts/ModeContext';
+import { Mode } from "../enums";
+import { ConfigMenu } from "./ConfigMenu";
+import { appStyle } from "../styles";
+import { InfoBox } from "./ui/InfoBox";
+import LineText from "./ui/LineText";
+import { InputManager } from "./InputManager";
+import { useState } from "react";
+import { useModeContext } from "../contexts/ModeContext";
 
 const Main = () => {
   const [doubleClick, setDoubleClick] = useState(false);
   const [isInputOpen, setIsInputOpen] = useState(true);
   const { mode, setMode } = useModeContext();
   const handleKeyDown = (e: any) => {
-    if (e.code === 'Escape') setIsInputOpen(true);
-    if (e.altKey && e.code === 'KeyI') setIsInputOpen(prev => !prev);
+    if (e.code === "Escape") setIsInputOpen(true);
+    if (e.altKey && e.code === "KeyI") setIsInputOpen(prev => !prev);
   };
   const handleDoubleClick = (e: any) => {
     setDoubleClick(true);
@@ -29,8 +29,7 @@ const Main = () => {
             style={appStyle.body}
             onKeyDown={handleKeyDown}
             onDoubleClick={handleDoubleClick}
-            tabIndex={-1}
-          >
+            tabIndex={-1}>
             <InfoBox />
             <LineText />
           </div>

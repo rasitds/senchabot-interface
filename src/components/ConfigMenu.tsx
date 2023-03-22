@@ -1,16 +1,16 @@
-import { useState, useEffect, useContext } from 'react';
-import { /*Link, */ useTheme } from '@mui/material';
-import { outputCornerStyle } from '../styles';
-import { useModeContext } from '../contexts/ModeContext';
-import { Mode } from '../enums';
+import { useState, useEffect, useContext } from "react";
+import { /*Link, */ useTheme } from "@mui/material";
+import { outputCornerStyle } from "../styles";
+import { useModeContext } from "../contexts/ModeContext";
+import { Mode } from "../enums";
 
-const CONFIG_MENU_TITLE = 'CONFIGURATION MENU\n\n';
+const CONFIG_MENU_TITLE = "CONFIGURATION MENU\n\n";
 
 const menuArray = [
   // TODO: "Remove All Browser Data"
-  'Switch to Voice Input',
-  'Switch to Text Input',
-  'Exit Config Menu',
+  "Switch to Voice Input",
+  "Switch to Text Input",
+  "Exit Config Menu",
   // TODO:
   // <Link key={4} href="/xyz">
   //   Back to xyz
@@ -28,17 +28,17 @@ export const ConfigMenu = () => {
 
   useEffect(() => {
     let menuButton = 0;
-    document.addEventListener('keydown', e => {
+    document.addEventListener("keydown", e => {
       const keyCode = e.code;
-      if (keyCode === 'ArrowUp' && menuButton > 0) {
+      if (keyCode === "ArrowUp" && menuButton > 0) {
         menuButton = --menuButton;
-      } else if (keyCode === 'ArrowDown' && menuButton < menuArray.length - 1) {
+      } else if (keyCode === "ArrowDown" && menuButton < menuArray.length - 1) {
         menuButton = ++menuButton;
       }
 
       setButton(menuButton);
 
-      if (keyCode === 'Enter') {
+      if (keyCode === "Enter") {
         handleMenuButton(menuButton);
       }
     });
@@ -56,13 +56,13 @@ export const ConfigMenu = () => {
   const handleMenuButton = (menuButton: number) => {
     switch (menuButton) {
       case 0:
-        setTexts('Switching to Voice Input Mode\n\n');
+        setTexts("Switching to Voice Input Mode\n\n");
         break;
       case 1:
-        setTexts('Switching to Text Input Mode\n\n');
+        setTexts("Switching to Text Input Mode\n\n");
         break;
       case 2:
-        setTexts('Exit Command Executed\n\n');
+        setTexts("Exit Command Executed\n\n");
         const timeout = setTimeout(() => {
           setMode(Mode.MAIN);
           clearTimeout(timeout);
@@ -83,11 +83,10 @@ export const ConfigMenu = () => {
       <div
         style={{
           ...outputCornerStyle.text,
-          color: 'white',
-        }}
-      >
+          color: "white",
+        }}>
         {texts}
-        <div style={{ maxWidth: '800px' }}>
+        <div style={{ maxWidth: "800px" }}>
           {menuArray.map((menu, index) => (
             <div
               key={index}
@@ -95,18 +94,17 @@ export const ConfigMenu = () => {
               onMouseDown={() => handleMouseDown(index)}
               style={{
                 ...outputCornerStyle.button,
-                marginBottom: '6px',
-                padding: '4px 8px',
-                borderStyle: 'solid',
+                marginBottom: "6px",
+                padding: "4px 8px",
+                borderStyle: "solid",
                 borderColor: background,
-                color: 'white',
+                color: "white",
                 ...(button === index && {
-                  backgroundColor: 'white',
-                  color: 'black',
-                  borderColor: 'white',
+                  backgroundColor: "white",
+                  color: "black",
+                  borderColor: "white",
                 }),
-              }}
-            >
+              }}>
               {menu}
             </div>
           ))}

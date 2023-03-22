@@ -15,7 +15,7 @@ export function calculateColorBrightness(colorCode: string) {
   let colorRGB = colorOption.color;
 
   let rgbArray: string[] | RegExpMatchArray | null = colorRGB?.match(
-    /^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/
+    /^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/,
   );
 
   if (!rgbArray) return;
@@ -24,7 +24,7 @@ export function calculateColorBrightness(colorCode: string) {
     (parseInt(rgbArray[1]) * 299 +
       parseInt(rgbArray[2]) * 587 +
       parseInt(rgbArray[3]) * 114) /
-      1000
+      1000,
   );
 
   return brightness > 125 ? "#000000" : "#FFFFFF";
