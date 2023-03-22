@@ -1,8 +1,8 @@
-import { useTheme } from '@mui/material';
-import { FC } from 'react';
+import { useTheme } from "@mui/material";
+import { FC } from "react";
 
-import { textLineStyle } from '../../../styles';
-import { ITextLineProps } from '../../../types';
+import { textLineStyle } from "../../../styles";
+import { ITextLineProps } from "../../../types";
 
 const Line: FC<ITextLineProps> = props => {
   const theme = useTheme();
@@ -10,7 +10,7 @@ const Line: FC<ITextLineProps> = props => {
 
   return (
     <div
-      className={`${props.textWord ? '' : 'lineAnimation'}`}
+      className={`${props.textWord ? "" : "lineAnimation"}`}
       style={textLineStyle(primaryMainColor, props)}
     />
   );

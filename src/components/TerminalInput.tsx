@@ -1,5 +1,5 @@
-import Draggable from 'react-draggable';
-import { terminalStyle } from '../styles';
+import Draggable from "react-draggable";
+import { terminalStyle } from "../styles";
 
 const TerminalInput = () => {
   return (

@@ -1,8 +1,8 @@
-import { useTheme } from '@mui/material';
-import { FC } from 'react';
+import { useTheme } from "@mui/material";
+import { FC } from "react";
 
-import { textWordStyle } from '../../../styles';
-import { ITextWordProps } from '../../../types';
+import { textWordStyle } from "../../../styles";
+import { ITextWordProps } from "../../../types";
 
 const Word: FC<ITextWordProps> = props => {
   const theme = useTheme();

@@ -1,11 +1,11 @@
-import { Mode } from '../enums';
-import { ConfigMenu } from './ConfigMenu';
-import { appStyle } from '../styles';
-import { InfoBox } from './ui/InfoBox';
-import TextLineWord from './ui/TextLineWord';
-import { InputManager } from './InputManager';
-import { useState } from 'react';
-import { useModeContext } from '../contexts/ModeContext';
+import { Mode } from "../enums";
+import { ConfigMenu } from "./ConfigMenu";
+import { appStyle } from "../styles";
+import { InfoBox } from "./ui/InfoBox";
+import TextLineWord from "./ui/TextLineWord";
+import { InputManager } from "./InputManager";
+import { useState } from "react";
+import { useModeContext } from "../contexts/ModeContext";
 
 const Main = () => {
   const [doubleClick, setDoubleClick] = useState(false);

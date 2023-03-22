@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { configMenuStyle } from '../styles';
-import { useModeContext } from '../contexts/ModeContext';
-import { Mode } from '../enums';
+import { useState, useEffect } from "react";
+import { configMenuStyle } from "../styles";
+import { useModeContext } from "../contexts/ModeContext";
+import { Mode } from "../enums";
 
 const CONFIG_MENU_TITLE = "CONFIGURATION MENU\n\n";
 

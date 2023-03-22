@@ -1,21 +1,21 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from "react";
 
-import { RunContext } from '../../../contexts/RunContext';
-import { useResponseContext } from '../../../contexts/ResponseContext';
+import { RunContext } from "../../../contexts/RunContext";
+import { useResponseContext } from "../../../contexts/ResponseContext";
 
-import { getTextWidth } from '../../../utils/functions';
-import { useRecursiveTimeout } from '../../../utils/hooks';
-import { AnyContextType } from '../../../types';
+import { getTextWidth } from "../../../utils/functions";
+import { useRecursiveTimeout } from "../../../utils/hooks";
+import { AnyContextType } from "../../../types";
 
-import Line from './Line';
-import Word from './Word';
+import Line from "./Line";
+import Word from "./Word";
 
 const TextLineWord = () => {
   const { isRunning, setIsRunning } = useContext(RunContext);
   const responseContext: AnyContextType = useResponseContext();
 
   const [words, setWordArray] = useState<string[]>([]);
-  const [word, setWord] = useState('');
+  const [word, setWord] = useState("");
   const [wordWidth, setWordWidth] = useState(28);
   const [wordIndex, setWordIndex] = useState(0);
   const [wordTimeout, setWordTimeout] = useState(500);
@@ -26,14 +26,14 @@ const TextLineWord = () => {
     if (isRunning) {
       setIsRunning(false);
       var upperCaseLineText = lineText.toUpperCase();
-      setWordArray(upperCaseLineText.split(' '));
+      setWordArray(upperCaseLineText.split(" "));
       setWordIndex(0);
     }
   }, [isRunning]);
 
   useEffect(() => {
-    if (word === undefined) setWord('');
-    setWordWidth(getTextWidth(word, 'reem'));
+    if (word === undefined) setWord("");
+    setWordWidth(getTextWidth(word, "reem"));
   }, [word]);
 
   useRecursiveTimeout(

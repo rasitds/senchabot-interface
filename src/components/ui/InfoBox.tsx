@@ -1,7 +1,7 @@
-import { infoBoxContainerStyle, infoBoxStyle } from '../../styles';
-import { useInfoBoxContext } from '../../contexts/InfoBoxContext';
-import Typewriter from 'typewriter-effect';
-import { useTheme } from '@mui/material';
+import { infoBoxContainerStyle, infoBoxStyle } from "../../styles";
+import { useInfoBoxContext } from "../../contexts/InfoBoxContext";
+import Typewriter from "typewriter-effect";
+import { useTheme } from "@mui/material";
 
 export const InfoBox = () => {
   const theme = useTheme();

@@ -1,9 +1,9 @@
-import { useTheme } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { useResponseContext } from '../../contexts/ResponseContext';
-import { outputCornerStyle } from '../../styles';
-import { AnyContextType } from '../../types';
-import { useRecursiveTimeout } from '../../utils/hooks';
+import { useTheme } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useResponseContext } from "../../contexts/ResponseContext";
+import { outputCornerStyle } from "../../styles";
+import { AnyContextType } from "../../types";
+import { useRecursiveTimeout } from "../../utils/hooks";
 
 const DELAYMS_DEFAULT = 1000;
 
@@ -25,7 +25,7 @@ const OutputCorner = () => {
     () =>
       new Promise<void>(r => {
         if (textIndex <= texts.length && texts[textIndex]) {
-          setOutputText(outputText => [...outputText, texts[textIndex] + '\n']);
+          setOutputText(outputText => [...outputText, texts[textIndex] + "\n"]);
           setTextIndex(textIndex + 1);
         }
         r();
