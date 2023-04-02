@@ -1,12 +1,6 @@
-import React, {
-  createContext,
-  JSXElementConstructor,
-  ReactFragment,
-  ReactPortal,
-  useMemo,
-  useState,
-} from "react";
+import React, { createContext, useMemo, useState } from "react";
 import { Mode } from "../enums";
+import { ReactChildrenPropsType } from "../types";
 
 type ModeContextType = {
   mode: Mode;
@@ -18,12 +12,7 @@ const defaultProps = {
   setMode: () => {},
 };
 const ModeContext = createContext<ModeContextType>(defaultProps);
-function ModeContextProvider(Props: {
-  children:
-    | React.ReactElement<any, string | JSXElementConstructor<any>>
-    | ReactFragment
-    | ReactPortal;
-}) {
+function ModeContextProvider(Props: ReactChildrenPropsType) {
   const [mode, setMode] = useState<Mode>(Mode.MAIN);
   const modeContext = useMemo(() => ({ mode, setMode }), [mode]);
   return (

@@ -1,4 +1,10 @@
-import { CSSProperties } from "react";
+import {
+  CSSProperties,
+  JSXElementConstructor,
+  ReactElement,
+  ReactFragment,
+  ReactPortal,
+} from "react";
 
 type AnyContextType = {
   [key: string]: any;
@@ -16,4 +22,25 @@ export interface IMainColor {
   foreground: string;
 }
 
-export type { AnyContextType, InputContextType, StyleType };
+export interface ITextLineProps {
+  lineSize: number;
+  textWord: string;
+}
+
+export interface ITextWordProps {
+  textWord: string;
+}
+
+type ReactChildrenPropsType = {
+  children:
+    | ReactElement<any, string | JSXElementConstructor<any>>
+    | ReactFragment
+    | ReactPortal;
+};
+
+export type {
+  AnyContextType,
+  InputContextType,
+  ReactChildrenPropsType,
+  StyleType,
+};

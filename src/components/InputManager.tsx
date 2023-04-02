@@ -1,4 +1,4 @@
-import { appStyle } from "../styles";
+import { angleUpContainerStyle, appStyle } from "../styles";
 import { useEffect, useMemo, useState } from "react";
 
 import { InputContext } from "../contexts/InputContext";
@@ -20,6 +20,7 @@ import { AnyContextType, InputContextType } from "../types";
 
 export const InputManager = ({ isInputOpen }: { isInputOpen: boolean }) => {
   const theme = useTheme();
+  const primaryMainColor = theme.palette.primary.main;
   CommandRegistry.registerAllCommands();
 
   const responseContext: AnyContextType = useResponseContext();
@@ -83,19 +84,15 @@ export const InputManager = ({ isInputOpen }: { isInputOpen: boolean }) => {
         <ResponseProvider>
           <div style={appStyle.body}>
             <div
-              style={{
-                position: "absolute",
-                bottom: inputState.inputEnabled ? "32px" : "80px",
-                transition: "height 0.3s ease-in-out, bottom 0.3s ease-in-out",
-                transform: !inputState.inputEnabled ? "rotateX(180deg)" : "",
-              }}
+              className="angleUpContainer"
+              style={angleUpContainerStyle(inputState)}
               onClick={() => {
                 setInputState({
                   inputEnabled: !inputState.inputEnabled,
                   inputValue: "",
                 });
               }}>
-              <AngleUp foregroundColor={theme.palette.primary.main} />
+              <AngleUp foregroundColor={primaryMainColor} />
             </div>
             {true ? <TextInput /> : <TerminalInput />}
           </div>

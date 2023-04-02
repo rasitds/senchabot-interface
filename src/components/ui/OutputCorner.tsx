@@ -19,20 +19,19 @@ const OutputCorner = () => {
   const lineText = responseState.lineText;
   const texts = responseState.outputText;
 
+  const primaryMainColor = theme.palette.primary.main;
+
   useRecursiveTimeout(
     () =>
-      new Promise<void>((r) => {
+      new Promise<void>(r => {
         if (textIndex <= texts.length && texts[textIndex]) {
-          setOutputText((outputText) => [
-            ...outputText,
-            texts[textIndex] + "\n",
-          ]);
+          setOutputText(outputText => [...outputText, texts[textIndex] + "\n"]);
           setTextIndex(textIndex + 1);
         }
         r();
       }),
     Math.floor(Math.random() * 500),
-    0
+    0,
   );
 
   useEffect(() => {
@@ -53,9 +52,7 @@ const OutputCorner = () => {
 
   return displayStatus ? (
     <div style={outputCornerStyle.container}>
-      <div
-        style={{ ...outputCornerStyle.text, color: theme.palette.primary.main }}
-      >
+      <div style={{ ...outputCornerStyle.text, color: primaryMainColor }}>
         {outputText}
       </div>
     </div>

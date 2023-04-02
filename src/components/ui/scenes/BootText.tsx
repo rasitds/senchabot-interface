@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { outputCornerStyle } from "../../../styles";
 import { useRecursiveTimeout } from "../../../utils/hooks";
+import Body from "../Body";
 
 export const BootText = ({ texts }: { texts: string[] }) => {
   const [displayStatus, setDisplayStatus] = useState(true);
@@ -30,11 +31,11 @@ export const BootText = ({ texts }: { texts: string[] }) => {
   }, [texts.length]);
 
   return displayStatus ? (
-    <div style={outputCornerStyle.container}>
-      <div style={{ ...outputCornerStyle.text, color: "#fff" }}>
-        {outputText}
+    <Body>
+      <div style={outputCornerStyle.container}>
+        <div style={outputCornerStyle.text}>{outputText}</div>
       </div>
-    </div>
+    </Body>
   ) : (
     <></>
   );

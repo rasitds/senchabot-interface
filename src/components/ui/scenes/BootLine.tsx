@@ -1,7 +1,7 @@
 import { useTheme } from "@mui/material";
 import { FC } from "react";
 
-import { appStyle } from "../../../styles";
+import { bootLineStyle } from "../../../styles";
 import { calculateColorBrightness } from "../../../utils/functions";
 
 const BootLine: FC<{}> = () => {
@@ -12,14 +12,7 @@ const BootLine: FC<{}> = () => {
   let bootLineColor = calculateColorBrightness(backgroundColor) || "#FFFFFF";
 
   return (
-    <div
-      className="bootLineAnimation"
-      style={{
-        ...appStyle.bootLine,
-        background: bootLineColor,
-        borderLeft: `3px solid ${bootLineColor}`,
-      }}
-    />
+    <div className="bootLineAnimation" style={bootLineStyle(bootLineColor)} />
   );
 };
 

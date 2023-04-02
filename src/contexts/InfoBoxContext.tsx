@@ -1,13 +1,5 @@
-import React, {
-  createContext,
-  JSXElementConstructor,
-  ReactElement,
-  ReactFragment,
-  ReactPortal,
-  useContext,
-  useMemo,
-  useState,
-} from "react";
+import React, { createContext, useContext, useMemo, useState } from "react";
+import { ReactChildrenPropsType } from "../types";
 
 export interface IInfoBox {
   infoBoxType: number;
@@ -28,12 +20,7 @@ const defaultProps = {
 };
 
 const InfoBoxContext = createContext<InfoBoxContextType>(defaultProps);
-function InfoBoxContextProvider(Props: {
-  children:
-    | ReactElement<any, string | JSXElementConstructor<any>>
-    | ReactFragment
-    | ReactPortal;
-}) {
+function InfoBoxContextProvider(Props: ReactChildrenPropsType) {
   const [infoBox, setInfoBox] = useState<IInfoBox>(defaultProps.infoBox);
   const infoBoxContext = useMemo(() => ({ infoBox, setInfoBox }), [infoBox]);
   return (
